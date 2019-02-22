@@ -1,0 +1,24 @@
+{% extends "recipes/layout.html" %}
+{% load static %}
+
+
+{% block content %}
+	<header class="row align-items-center mt-3">
+		<h1 class="col">Ingredients</h1>
+		<a class="add-item mr-3 ml-3" href="#">Add ingredient</a>
+	</header>
+	<ul>
+		<li class="item">
+			<div class="media">
+			<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
+			<ul class="media-body">
+				<li><span>Nome</span> Capuccino</li>
+				<li><span>Preço</span> R$ 2,45</li>
+				<li><span>Dados</span> Café novo no estilo Cappuccino</li>
+			</ul>
+			<a href="#">Editar</a>
+			</div>
+		</li>
+		
+	</ul>
+{% endblock %}

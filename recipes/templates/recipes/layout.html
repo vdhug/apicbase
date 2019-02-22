@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Brafé 3</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="{% static 'recipes/css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'recipes/css/style.css' %}">
+</head>
+
+<body>
+
+<header class="header">
+	<div class="container-fluid">
+		<div class="row">
+			<a class="header-logo mr-auto col-md-4" href="#">
+				<img src="{% static 'ingredients/img/brafe.png' %}" alt="Brafé">
+			</a>
+			<nav class="header-menu mr-3 ml-3">
+				<ul>
+					<li><a href="#">About</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+<main class="main-container container-fluid">
+
+	<div class="row">
+		<nav class="side-nav col-md-4 col-xl-3">
+			<ul>
+				<li><a class="nav-recipes" href="#">Recipes</a></li>
+				<li><a class="nav-ingredients" href="#">Ingredients</a></li>
+			</ul>
+		</nav>
+
+		<section class="content col-md-8 col-xl-9 mb-5">
+            {% block content %}
+            {% endblock %}
+			
+		</section>
+	</div>
+</main>
+
+<footer class="footer">
+	<p>Project developed by <a href="http://www.whoisvitor.com" target="_blank">Vitor Hugo</a>. </p>
+	<p>Senador Guiomard - Acre - Brazil</p>
+</footer>
+
+</body>
+
+</html>
