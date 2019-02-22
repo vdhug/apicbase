@@ -5,12 +5,24 @@
 {% block content %}
 	<header class="row align-items-center mt-3">
 		<h1 class="col">Recipes</h1>
-		<a class="add-item mr-3 ml-3" href="#">Add recipe</a>
+		<a class="button-header mr-3 ml-3" href="{% url 'add_recipe' %}">Add recipe</a>
 	</header>
 	<ul>
 		<li class="item">
 			<div class="media">
-			<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
+			<img src="{% static 'recipes/img/cafe-1.jpg' %}" alt="Café 1">
+			<ul class="media-body">
+				<li><span>Name</span> Capuccino</li>
+				<li><span>Price</span> R$ 2,45</li>
+				<li><span>Desc.</span> Café novo no estilo Cappuccino</li>
+			</ul>
+			<a href="#">Editar</a>
+			</div>
+		</li>
+
+		<li class="item">
+			<div class="media">
+			<img src="{% static 'recipes/img/cafe-2.jpg' %}" alt="Café 2">
 			<ul class="media-body">
 				<li><span>Nome</span> Capuccino</li>
 				<li><span>Preço</span> R$ 2,45</li>
@@ -22,7 +34,7 @@
 
 		<li class="item">
 			<div class="media">
-			<img src="{% static 'ingredients/img/cafe-2.jpg' %}" alt="Café 2">
+			<img src="{% static 'recipes/img/cafe-3.jpg' %}" alt="Café 3">
 			<ul class="media-body">
 				<li><span>Nome</span> Capuccino</li>
 				<li><span>Preço</span> R$ 2,45</li>
@@ -34,19 +46,7 @@
 
 		<li class="item">
 			<div class="media">
-			<img src="{% static 'ingredients/img/cafe-3.jpg' %}" alt="Café 3">
-			<ul class="media-body">
-				<li><span>Nome</span> Capuccino</li>
-				<li><span>Preço</span> R$ 2,45</li>
-				<li><span>Dados</span> Café novo no estilo Cappuccino</li>
-			</ul>
-			<a href="#">Editar</a>
-			</div>
-		</li>
-
-		<li class="item">
-			<div class="media">
-			<img src="{% static 'ingredients/img/cafe-4.jpg' %}" alt="Café 4">
+			<img src="{% static 'recipes/img/cafe-4.jpg' %}" alt="Café 4">
 			<ul class="media-body">
 				<li><span>Nome</span> Capuccino</li>
 				<li><span>Preço</span> R$ 2,45</li>

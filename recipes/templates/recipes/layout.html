@@ -15,7 +15,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<a class="header-logo mr-auto col-md-4" href="#">
-				<img src="{% static 'ingredients/img/brafe.png' %}" alt="Brafé">
+				<img src="{% static 'recipes/img/brafe.png' %}" alt="Brafé">
 			</a>
 			<nav class="header-menu mr-3 ml-3">
 				<ul>
@@ -31,15 +31,15 @@
 	<div class="row">
 		<nav class="side-nav col-md-4 col-xl-3">
 			<ul>
-				<li><a class="nav-recipes" href="#">Recipes</a></li>
-				<li><a class="nav-ingredients" href="#">Ingredients</a></li>
+				<li><a class="nav-recipes" href="{% url 'index' %}">Recipes</a></li>
+				<li><a class="nav-ingredients" href="{% url 'ingredients' %}">Ingredients</a></li>
 			</ul>
 		</nav>
 
 		<section class="content col-md-8 col-xl-9 mb-5">
             {% block content %}
             {% endblock %}
-			
+
 		</section>
 	</div>
 </main>

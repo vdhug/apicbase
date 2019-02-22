@@ -1,0 +1,29 @@
+{% extends "recipes/layout.html" %}
+{% load static %}
+
+
+
+{% block content %}
+    <header class="row align-items-center mt-3">
+        <h1 class="col">New Recipe</h1>
+        <a class="button-header mr-3 ml-3" href="{% url 'index' %}">Return</a>
+    </header>
+
+    <form class="create-item" action="{% url 'save_recipe' %}" method="post">
+        <div>
+            <output name="estimatedValue">Estimated Value: <span>R$ 12.00</span></output>
+            <label for="name">Name</label>
+            <input type="text" name="name" value="">
+            <label for="description">Description</label>
+            <input type="text" name="description" value="">
+
+            <div class="ingredient">
+                
+            </div>
+
+            <a class="button-clear" href="#">Clear</a>
+            <a class="button-save" href="#">Save</a>
+        </div>
+    </form>
+
+{% endblock %}

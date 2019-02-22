@@ -125,15 +125,38 @@ a {
 	font-weight: bold;
 }
 
-.add-item {
-	background: #c17139;
-	color: #e7e4d8;
+.button-header, .button-save, .button-clear {
+	border: 2px solid #c17139;
+	color: #252525;
 	font-size: 1.125em;
 	font-family: Courier, monospace;
+	font-weight: 500;
 	text-transform: uppercase;
 	padding: 15px 20px;
 	border-radius: 4px;
 	text-align: center;
+	transition: all ease .3s;
+}
+
+.button-header:hover {
+	color: #e7e4d8;
+	background-color: #c17139;
+}
+
+.button-save {
+	border: 2px solid #6439c1;
+}
+.button-save:hover {
+	color: #e7e4d8;
+	background-color: #6439c1;
+}
+
+.button-clear {
+	border: 2px solid #39c191;
+}
+.button-clear:hover {
+	color: #e7e4d8;
+	background-color: #39c191;
 }
 
 .item {
@@ -187,4 +210,50 @@ a {
 	padding: 60px 0;
 	font-size: 1.125em;
 	line-height: 1.4em;
+}
+
+/* Recipes */
+.create-item div output {
+	padding-top: 10px;
+	position: absolute;
+	right: 0;
+	font-size: 1.125em;
+	margin-right: 60px;
+}
+.create-item div output span {
+	display: block;
+	text-align: center;
+}
+
+
+
+
+/* Ingredients */
+.create-item {
+	background-color: #FFF;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.35);
+	margin: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+}
+
+.create-item label {
+	padding-top: 10px;
+}
+
+.create-item label, .create-item input {
+	display: block;
+	font-size: 1.125em;
+}
+
+.create-item input, .create-item select {
+	font-family: Courier, monospace;
+	width: 60%;
+	padding: 5px 10px;
+	border: 1px solid #252525;
+}
+
+.create-item a {
+	margin-top: 25px;
+	display: inline-block;
 }

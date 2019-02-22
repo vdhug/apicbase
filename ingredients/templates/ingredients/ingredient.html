@@ -1,0 +1,32 @@
+{% extends "recipes/layout.html" %}
+{% load static %}
+
+
+
+{% block content %}
+    <header class="row align-items-center mt-3">
+        <h1 class="col">New Ingredient</h1>
+        <a class="button-header mr-3 ml-3" href="{% url 'ingredients' %}">Return</a>
+    </header>
+
+    <form class="create-item" action="{% url 'save_ingredient' %}" method="post">
+        <div>
+            <label for="articleNumber">Article Number</label>
+            <input type="articleNumber" name="name" value="">
+            <label for="name">Name</label>
+            <input type="text" name="name" value="">
+            <label for="baseAmount">Base Amount</label>
+            <input type="number" name="baseAmount" value="">
+            <label for="unit">Unit</label>
+            <select class="" name="unit">
+                <option value="kg">Kilo</option>
+                <option value="lt">Liter</option>
+            </select>
+            <label for="price">Price</label>
+            <input type="number" name="price" value="" />
+            <a class="button-clear" href="#">Clear</a>
+            <a class="button-save" href="#">Save</a>
+        </div>
+    </form>
+
+{% endblock %}
