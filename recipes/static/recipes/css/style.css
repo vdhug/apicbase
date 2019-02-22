@@ -3,7 +3,6 @@ body, p, h1, ul, li {
 	margin: 0px;
 }
 
-
 li {
 	list-style: none;
 }
@@ -11,6 +10,7 @@ li {
 body {
 	font-family: Georgia, serif;
 	color: #252525;
+	min-height: 100vh;
 	background: #e7e4d8;
 }
 * {
@@ -212,7 +212,7 @@ a {
 	line-height: 1.4em;
 }
 
-/* Recipes */
+/* Objects */
 .create-item div output {
 	padding-top: 10px;
 	position: absolute;
@@ -225,10 +225,6 @@ a {
 	text-align: center;
 }
 
-
-
-
-/* Ingredients */
 .create-item {
 	background-color: #FFF;
 	box-shadow: 0 1px 3px 0 rgba(0,0,0,.35);
@@ -248,6 +244,7 @@ a {
 
 .create-item input, .create-item select {
 	font-family: Courier, monospace;
+	border-radius: 4px;
 	width: 60%;
 	padding: 5px 10px;
 	border: 1px solid #252525;
@@ -256,4 +253,32 @@ a {
 .create-item a {
 	margin-top: 25px;
 	display: inline-block;
+}
+
+.filters input {
+	width: 40%;
+	border-radius: 4px;
+	padding: 5px 10px;
+	border: 1px solid #252525;
+}
+
+.button-search {
+	font-family: Courier, monospace;
+    font-weight: 500;
+	margin-left: 10px;
+	border-radius: 4px;
+    padding: 7px 10px;
+	color: #252525;
+	text-transform: uppercase;
+    border: 2px solid #6439c1;
+}
+
+.button-search:hover {
+	color: #FFF;
+	background-color: #6439c1;
+}
+
+.show-more .button-header {
+	position: absolute;
+	bottom: 0;
 }

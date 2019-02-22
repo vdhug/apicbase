@@ -7,18 +7,25 @@
 		<h1 class="col">Ingredients</h1>
 		<a class="button-header mr-3 ml-3" href="{% url 'add_ingredient' %}">Add ingredient</a>
 	</header>
+	<div class="filters">
+		<input type="text" name="filter" value="">
+		<a class="button-search" href="#">Search</a>
+	</div>
 	<ul>
 		<li class="item">
 			<div class="media">
 			<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
 			<ul class="media-body">
-				<li><span>Nome</span> Capuccino</li>
-				<li><span>Preço</span> R$ 2,45</li>
-				<li><span>Dados</span> Café novo no estilo Cappuccino</li>
+				<li><span>Name</span> Capuccino (CP12)</li>
+				<li><span>Base</span> 100 MG</li>
+				<li><span>Price</span> 12.00 R$</li>
 			</ul>
 			<a href="#">Editar</a>
 			</div>
 		</li>
+		<span class="d-flex justify-content-center show-more">
+			<a class="button-header mr-3 ml-3" href="#">Show More</a>
+		</span>
 
 	</ul>
 {% endblock %}
