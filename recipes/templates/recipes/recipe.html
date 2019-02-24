@@ -2,15 +2,7 @@
 {% load static %}
 
 {% block script %}
-    <script id="result" type="text/template">
-        <li>
-            You rolled:
-            {{#each values}}
-                <img alt="{{ this }}" title="{{ this }}" src="img/{{ this }}.png">
-            {{/each}}
-            (Total: {{ total }})
-        </li>
-    </script>
+
 {% endblock %}
 
 
@@ -28,8 +20,19 @@
             <label for="description">Description</label>
             <input type="text" name="description" value="">
 
-            <div class="ingredient">
 
+            <label for="ingredients">Ingredients</label>
+            <div class="ingredients">
+                <ul>
+                    <li>
+                        <input type="text" name="articleNumber" value="" placeholder="A. Number">
+                        <i class="fas fa-search"></i>
+                        <input readonly type="text" name="name" value="" placeholder="Name">
+                        <input type="number" name="quantity" value="" placeholder="Quantity">
+                        <input readonly type="text" name="unit" value="" placeholder="Unit">
+                        <input readonly type="number" name="cost" value="" placeholder="Est. Cost">
+                    </li>
+                </ul>
             </div>
 
             <a class="button-clear" href="#">Clear</a>

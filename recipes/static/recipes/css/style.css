@@ -155,10 +155,13 @@ a:hover {
 	text-align: center;
 }
 
+.button-header:hover, .button-save:hover, .button-clear:hover, .button-search:hover {
+	transition: all ease .3s;
+}
+
 .button-header:hover {
 	color: #e7e4d8;
 	background-color: #c17139;
-	transition: all ease .3s;
 }
 
 .button-save {
@@ -167,7 +170,6 @@ a:hover {
 .button-save:hover {
 	color: #e7e4d8;
 	background-color: #6439c1;
-	transition: all ease .3s;
 }
 
 .button-clear {
@@ -176,7 +178,6 @@ a:hover {
 .button-clear:hover {
 	color: #e7e4d8;
 	background-color: #39c191;
-	transition: all ease .3s;
 }
 
 .list-items {
@@ -300,10 +301,36 @@ a:hover {
 .button-search:hover {
 	color: #FFF;
 	background-color: #6439c1;
-	transition: all ease .3s;
 }
 
 .show-more .button-header {
 	position: absolute;
 	bottom: 0;
+}
+
+/* Recipe */
+.ingredients ul li i {
+	margin-left: 5px;
+	margin-right: 4%;
+}
+
+.ingredients ul li i:hover {
+	cursor: pointer;
+	color: #c17139;
+	transition: all ease .3s;
+}
+
+.ingredients ul li input {
+	display: inline-block;
+	width: 25%;
+}
+.ingredients ul li input[name="articleNumber"] {
+	width: 15%;
+}
+.ingredients ul li input[name="unit"] {
+	width: 10%;
+}
+
+.ingredients ul li input[type=number] {
+	width: 15%;
 }
