@@ -1,6 +1,17 @@
 {% extends "recipes/layout.html" %}
 {% load static %}
 
+{% block script %}
+    <script id="result" type="text/template">
+        <li>
+            You rolled:
+            {{#each values}}
+                <img alt="{{ this }}" title="{{ this }}" src="img/{{ this }}.png">
+            {{/each}}
+            (Total: {{ total }})
+        </li>
+    </script>
+{% endblock %}
 
 
 {% block content %}
@@ -18,7 +29,7 @@
             <input type="text" name="description" value="">
 
             <div class="ingredient">
-                
+
             </div>
 
             <a class="button-clear" href="#">Clear</a>

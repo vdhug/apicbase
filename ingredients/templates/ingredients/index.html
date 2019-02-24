@@ -11,7 +11,7 @@
 		<input type="text" name="filter" value="">
 		<a class="button-search" href="#">Search</a>
 	</div>
-	<ul>
+	<ul class="list-items">
 		<li class="item">
 			<div class="media">
 			<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
@@ -23,9 +23,22 @@
 			<a href="#">Editar</a>
 			</div>
 		</li>
-		<span class="d-flex justify-content-center show-more">
-			<a class="button-header mr-3 ml-3" href="#">Show More</a>
-		</span>
 
+		<li class="item">
+			<div class="media">
+			<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
+			<ul class="media-body">
+				<li><span>Name</span> Capuccino (CP12)</li>
+				<li><span>Base</span> 100 MG</li>
+				<li><span>Price</span> 12.00 R$</li>
+			</ul>
+			<a href="#">Editar</a>
+			</div>
+		</li>
 	</ul>
+
+
+	<span class="d-flex justify-content-center show-more">
+		<a class="button-header mr-3 ml-3" href="#">Show More</a>
+	</span>
 {% endblock %}

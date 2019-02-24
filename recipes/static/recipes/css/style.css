@@ -22,7 +22,7 @@ img {
 	max-width: 100%;
 }
 
-a {
+a:hover {
 	text-decoration: none;
 }
 
@@ -77,6 +77,24 @@ a {
 	margin-right: 15px;
 	position: relative;
 	background-image: url('../img/icones.png');
+}
+
+.side-nav li a::after {
+	content: '';
+	display: block;
+	margin-left: 39px;
+    height: 2px;
+	margin-top: 3px;
+	width: 25%;
+    background-color: #FFF;
+	transform: scaleX(0);
+  	transition: .25s linear;
+}
+
+.side-nav li a:hover::after {
+	visibility: visible;
+	transform: scaleX(1);
+
 }
 
 .nav-ingredients::before {
@@ -135,12 +153,12 @@ a {
 	padding: 15px 20px;
 	border-radius: 4px;
 	text-align: center;
-	transition: all ease .3s;
 }
 
 .button-header:hover {
 	color: #e7e4d8;
 	background-color: #c17139;
+	transition: all ease .3s;
 }
 
 .button-save {
@@ -149,6 +167,7 @@ a {
 .button-save:hover {
 	color: #e7e4d8;
 	background-color: #6439c1;
+	transition: all ease .3s;
 }
 
 .button-clear {
@@ -157,6 +176,11 @@ a {
 .button-clear:hover {
 	color: #e7e4d8;
 	background-color: #39c191;
+	transition: all ease .3s;
+}
+
+.list-items {
+	margin-bottom: 100px;
 }
 
 .item {
@@ -276,6 +300,7 @@ a {
 .button-search:hover {
 	color: #FFF;
 	background-color: #6439c1;
+	transition: all ease .3s;
 }
 
 .show-more .button-header {
