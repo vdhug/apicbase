@@ -6,18 +6,20 @@
 
 <script src="{% static 'recipes/js/recipes.js' %}" type="text/javascript"></script>
 
-<script id="handlebarIngredientTemplate" type="text/template">
-    <li>
-        <input type="text" name="articleNumber" value="" placeholder="A. Number">
-        <i class="fas fa-search"></i>
-        <input readonly type="text" name="name" value="" placeholder="Name">
-        <input type="number" name="quantity" value="" placeholder="Quantity">
-        <input readonly type="text" name="unit" value="" placeholder="Unit">
-        <input readonly type="number" name="cost" value="" placeholder="Est. Cost">
-        <i class="fas fa-trash" onclick="removeRecipe()"></i>
-    </li>
-</script>
-
+{% verbatim %}
+<!-- Prevent conflict between django syntax and Handlebars syntax -->
+    <script id="handlebarIngredientTemplate" type="text/template">
+        <li>
+            <input type="text" name="articleNumber" value="" placeholder="A. Number">
+            <i class="fas fa-search"></i>
+            <input readonly type="text" name="name" value="" placeholder="Name">
+            <input type="number" name="quantity" value="" placeholder="Quantity">
+            <input readonly type="text" name="unit" value="" placeholder="Unit">
+            <input readonly type="number" name="cost" value="" placeholder="Est. Cost">
+            <i class="fas fa-trash" onclick="removeRecipe()"></i>
+        </li>
+    </script>
+{% endverbatim %}
 
 {% endblock %}
 
@@ -35,9 +37,6 @@
             <input type="text" name="name" value="">
             <label for="description">Description</label>
             <input type="text" name="description" value="">
-
-
-
             <div class="ingredients">
                 <label for="ingredients">Ingredients</label>
                 <ul id="ingredients">
@@ -52,6 +51,7 @@
                     </li>
                 </ul>
                 <a id="newIngredient" href="#"><span class="fas fa-plus"></span>Add Ingredient</a>
+                <a id="teste" href="#"><span class="fas fa-plus"></span>Add teste</a>
             </div>
 
             <a class="button-clear" href="#">Clear</a>
