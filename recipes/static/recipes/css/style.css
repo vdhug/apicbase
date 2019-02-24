@@ -17,6 +17,10 @@ body {
 	box-sizing: border-box;
 }
 
+*:hover {
+	transition: all ease .3s;
+}
+
 img {
 	display: block;
 	max-width: 100%;
@@ -153,10 +157,6 @@ a:hover {
 	padding: 15px 20px;
 	border-radius: 4px;
 	text-align: center;
-}
-
-.button-header:hover, .button-save:hover, .button-clear:hover, .button-search:hover {
-	transition: all ease .3s;
 }
 
 .button-header:hover {
@@ -309,6 +309,10 @@ a:hover {
 }
 
 /* Recipe */
+.ingredients ul li {
+	margin-bottom: 10px;
+}
+
 .ingredients ul li i {
 	margin-left: 5px;
 	margin-right: 4%;
@@ -317,7 +321,6 @@ a:hover {
 .ingredients ul li i:hover {
 	cursor: pointer;
 	color: #c17139;
-	transition: all ease .3s;
 }
 
 .ingredients ul li input {
@@ -333,4 +336,17 @@ a:hover {
 
 .ingredients ul li input[type=number] {
 	width: 15%;
+}
+.ingredients a span {
+	font-weight: 700;
+}
+
+.ingredients a {
+	margin-top: 20px;
+	color: #6439c1;
+	text-transform: uppercase;
+}
+
+.ingredients a:hover {
+	color: #c17139;
 }
