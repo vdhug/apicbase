@@ -267,12 +267,16 @@ a:hover {
 	font-size: 1.125em;
 }
 
-.create-item input, .create-item select {
+.create-item input, .create-item select, .create-item textarea {
 	font-family: Courier, monospace;
 	border-radius: 4px;
 	width: 60%;
 	padding: 5px 10px;
 	border: 1px solid #252525;
+}
+
+.create-item textarea {
+	width: 90%;
 }
 
 .create-item a {
@@ -338,11 +342,13 @@ a:hover {
 	width: 15%;
 }
 .ingredients a span {
-	font-weight: 700;
+	font-weight: 600;
+	margin-right: 5px;
 }
 
 .ingredients a {
-	margin-top: 20px;
+	margin-top: 15px;
+	margin-bottom: 20px;
 	color: #6439c1;
 	text-transform: uppercase;
 }
