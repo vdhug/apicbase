@@ -12,18 +12,18 @@
     <form class="create-item" action="{% url 'save_ingredient' %}" method="post">
         <div>
             <label for="articleNumber">Article Number</label>
-            <input type="articleNumber" name="name" value="">
+            <input type="articleNumber" name="name" value="" maxlength="5" required>
             <label for="name">Name</label>
-            <input type="text" name="name" value="">
+            <input type="text" name="name" value="" required>
             <label for="baseAmount">Base Amount</label>
-            <input type="number" name="baseAmount" value="">
+            <input type="number" name="baseAmount" value="" required>
             <label for="unit">Unit</label>
-            <select class="" name="unit">
+            <select class="" name="unit" >
                 <option value="kg">Kilo</option>
                 <option value="lt">Liter</option>
             </select>
             <label for="price">Price</label>
-            <input type="number" name="price" value="" />
+            <input type="number" name="price" value="" required/>
             <a class="button-clear" href="#">Clear</a>
             <a class="button-save" href="#">Save</a>
         </div>
