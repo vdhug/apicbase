@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MaxLengthValidator, MinLengthValidator, DecimalValidator, MinValueValidator
 
 # Create your models here.
 class Ingredient(models.Model):
@@ -11,15 +12,15 @@ class Ingredient(models.Model):
     )
 
     """ Creating base amount property with django built in validators. Ensuring that the base amount is a decimal number between 0.00 and 9999999.99 """
-    base_amount = models.DecimalField(max_digits=7, decimal_place=2, validators = [
-        DecimalValidator(max_digits=7, max_decimal_places=2, message="The base amount must be a 7 decimal number with two decimal places maximum."),
+    base_amount = models.DecimalField(max_digits=7, decimal_places=2, validators = [
+        DecimalValidator(max_digits=7, decimal_places=2),
         MinValueValidator(limit_value=0.01, message="The base amount cannot be equals to 0.00"),
         ]
     )
 
     """ Creating base price property with django built in validators. Ensuring that the base price is a decimal number between 0.00 and 9999999.99 """
-    base_price = models.DecimalField(max_digits=7, decimal_place=2, validators = [
-        DecimalValidator(max_digits=7, max_decimal_places=2, message="The base price must be a 7 decimal number with two decimal places maximum."),
+    base_price = models.DecimalField(max_digits=7, decimal_places=2, validators = [
+        DecimalValidator(max_digits=7, decimal_places=2),
         MinValueValidator(limit_value=0.01, message="The base price cannot be equals to 0.00"),
         ]
     )
@@ -33,6 +34,7 @@ class Ingredient(models.Model):
     )
     unit = models.CharField(
         choices=UNIT_CHOICES,
+        max_length=5,
     )
 
     """ Tracks when this ingredient was created """
