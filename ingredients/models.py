@@ -6,17 +6,14 @@ from django.db.models import Q
 """ IngredientManager, class to manage all the db operations related to the ingredient model """
 class IngredientManager(models.Manager):
 
-    """ Create and update method """
-    def save_ingredient(self, name, article_number, base_amount, unit, base_price, id=None):
+    """ Create method """
+    def save_ingredient(self, name, article_number, base_amount, unit, base_price):
         try:
-            i = Ingredient(id=id, name=name, article_number=article_number, base_amount=base_amount, unit=unit, base_price=base_price)
+            i = Ingredient(name=name, article_number=article_number, base_amount=base_amount, unit=unit, base_price=base_price)
 
-            if i.id==None:
-                i.full_clean()
-                i.save()
-            else:
-                i.full_clean(exclude=['id', 'article_number'])
-                self.update(name=i.name, article_number=i.article_number, base_amount=i.base_amount, unit=i.unit, base_price=i.base_price)
+            i.full_clean()
+            i.save()
+
             return {'success': True, 'object': i, 'message': 'Success on saving object'}
 
         except ValidationError as e:
@@ -29,9 +26,37 @@ class IngredientManager(models.Manager):
         except Exception as e:
             return {'success': False, 'message': 'Error in create_ingredient method. Raised in path: ingredient.models: line 27\n'+str(e)}
 
+
+    """ Update method. The variable id refers to the id from the entity wich will be updated and the variable updates refers to a dictionary that contains all the fields that will be updated. """
+    def update_ingredient(self, id, updates):
+        try:
+            instance = self.get(pk=id)
+            for attr, value in updates.items():
+                setattr(instance, attr, value)
+            instance.full_clean()
+            instance.save()
+
+            return {'success': True, 'message': 'Success on updating object'}
+        except ValidationError as e:
+            for property, message in e:
+                return {'success': False, 'message': message[0], "property": property}
+
+        except IntegrityError as e:
+            return {'success': False, 'message': 'There is already an ingredient with that article number.'}
+
+        except Exception as e:
+            return {'success': False, 'message': 'Error in update_ingredient method. Raised in path: ingredient.models: line 44\n'+str(e)}
+
+
     """ Function that filter ingredients by name and article number """
     def filter_ingredients(self, text):
         return self.filter(Q(name__icontains=text) | Q(article_number__icontains=text))
+
+
+    """ Get ingredient by Id """
+    def get_ingredient(self, id):
+        return self.get(pk=id)
+
 
 class Ingredient(models.Model):
     objects = IngredientManager()

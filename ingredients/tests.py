@@ -66,10 +66,10 @@ class ModelsTestCase(TestCase):
     """ Check if the save_ingredient method is working properly when receiveing an ingredient to update """
     def test_ingredient_update(self):
         i = Ingredient.objects.get(article_number='AA111')
-        i.base_price = 30.00
-        result = Ingredient.objects.save_ingredient(name=i.name, article_number=i.article_number, base_amount=i.base_amount, unit=i.unit, base_price=i.base_price, id=i.id)
+        updates = {"name": "BB333"}
+        result = Ingredient.objects.update_ingredient(id=i.id, updates=updates)
         b = Ingredient.objects.get(article_number='AA111')
-        self.assertEqual(b.base_price, 30.00)
+        self.assertEqual(b.name, "BB333")
 
 
     """ Check if the filter_ingredients function is working properly (filtering by article_number and name) """

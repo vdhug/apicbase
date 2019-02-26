@@ -312,6 +312,12 @@ a:hover {
 	bottom: 0;
 }
 
+.error-message {
+	color: #dc3545;
+  font-size: 1.25rem;
+  padding-top: 10px;
+}
+
 /* Recipe */
 .ingredients ul li {
 	margin-bottom: 10px;
