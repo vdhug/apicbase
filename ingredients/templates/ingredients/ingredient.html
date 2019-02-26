@@ -13,27 +13,24 @@
 
     <form id="form-ingredient" class="create-item" action="{% url 'save_ingredient' %}" method="POST">
       {% csrf_token %}
-        <div>
-            <label for="articleNumber">Article Number</label>
-            <input type="articleNumber" name="name" value="{{ingredient.article_number}}" autocomplete="off" minlength="1" maxlength="5" required>
-            <label for="name">Name</label>
-            <input type="text" name="name" value="{{ingredient.name}}" autocomplete="off" minlength="1" maxlength="64" required>
-            <label for="baseAmount">Base Amount</label>
-            <input type="number" name="baseAmount" min="0.01" step='1.00' max="9999999.99" value="{{ingredient.base_amount}}" required>
-            <label for="unit">Unit</label>
-            <select class="" name="unit" >
-                <option value="">Select an unit</option>
-                <option value="kg">Kilo</option>
-                <option value="lt">Liter</option>
-            </select>
-            <label for="price">Price</label>
-            <input type="number" name="price" min="0.01" step='1.00' max="9999999.99" value="{{ingredient.base_price}}" required/>
-            <div class="error-message">
-              Invalid field
-            </div>
-            <a id="reset-form" class="button-clear" href="#">Clear</a>
-            <a id="submit-form" class="button-save" href="#">Save</a>
-        </div>
+          <label for="articleNumber">Article Number</label>
+          <input type="text" name="articleNumber" data-name="Article number" value="{{ingredient.article_number}}" autocomplete="off" minlength="1" maxlength="5" required>
+          <label for="name">Name</label>
+          <input type="text" name="name" data-name="Name" value="{{ingredient.name}}" autocomplete="off" minlength="1" maxlength="64" required>
+          <label for="baseAmount">Base Amount</label>
+          <input type="number" name="baseAmount" data-name="Base amount" min="0.00" step='1.00' max="9999999.99" value="{{ingredient.base_amount}}" required>
+          <label for="unit">Unit</label>
+          <select class="" name="unit" >
+              <option value="">Select an unit</option>
+              <option value="kg">Kilo</option>
+              <option value="lt">Liter</option>
+          </select>
+          <label for="price">Price</label>
+          <input type="number" name="price" data-name="Base price" min="0.00" step='1.00' max="9999999.99" value="{{ingredient.base_price}}" required/>
+          <div class="error-message">
+          </div>
+          <a id="reset-form" class="button-clear" href="#">Clear</a>
+          <a id="submit-form" class="button-save" href="#">Save</a>
     </form>
 
 {% endblock %}
