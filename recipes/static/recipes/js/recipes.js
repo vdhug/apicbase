@@ -1,16 +1,15 @@
-// Template for adding a new ingredient for one recipe
-
 document.addEventListener('DOMContentLoaded', () => {
+    // Retrieve and compile Handlebars template
+    const template = Handlebars.compile(document.querySelector('#handlebar-ingredient-template').innerHTML);
 
-    document.querySelector('#newIngredient').onclick = (e)  => {
+    // Add Listener to button to create a new ingrediento model to recipe
+    document.querySelector('#new-ingredient').onclick = (e)  => {
         e.preventDefault();
-        const template = Handlebars.compile(document.querySelector('#handlebarIngredientTemplate').innerHTML);
-        // Create new recipe element to DOM.
-
+        // Creating the html text from handlebars template
         const content = template();
+        // Append the new recipe element to DOM.
         document.querySelector('#ingredients').innerHTML += content;
     };
-
 });
 
 function removeRecipe() {

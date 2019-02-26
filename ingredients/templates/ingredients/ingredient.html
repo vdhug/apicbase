@@ -1,7 +1,9 @@
 {% extends "recipes/layout.html" %}
 {% load static %}
 
-
+{% block script %}
+  <script src="{% static 'ingredients/js/ingredients.js' %}" type="text/javascript"></script>
+{% endblock %}
 
 {% block content %}
     <header class="row align-items-center mt-3">
@@ -9,7 +11,8 @@
         <a class="button-header mr-3 ml-3" href="{% url 'ingredients' %}">Return</a>
     </header>
 
-    <form class="create-item" action="{% url 'save_ingredient' %}" method="post">
+    <form id="form-ingredient" class="create-item" action="{% url 'save_ingredient' %}" method="POST">
+      {% csrf_token %}
         <div>
             <label for="articleNumber">Article Number</label>
             <input type="articleNumber" name="name" value="" minlength="1" maxlength="5" required>
@@ -25,8 +28,8 @@
             </select>
             <label for="price">Price</label>
             <input type="number" name="price" min="0.01" step='1.00' max="9999999.99" value="" required/>
-            <a class="button-clear" href="#">Clear</a>
-            <a class="button-save" href="#">Save</a>
+            <a id="reset-form" class="button-clear" href="#">Clear</a>
+            <a id="submit-form" class="button-save" href="#">Save</a>
         </div>
     </form>
 
