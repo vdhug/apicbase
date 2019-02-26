@@ -6,8 +6,12 @@ from .models import Ingredient
 
 # Create your views here.
 def ingredients(request):
-	
-	return render(request, "ingredients/index.html")
+	ingredients = Ingredient.objects.get_all()
+	context = {
+		'ingredients': ingredients,
+	}
+
+	return render(request, "ingredients/index.html", context)
 
 
 def add_ingredient(request):

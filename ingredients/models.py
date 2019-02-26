@@ -57,6 +57,10 @@ class IngredientManager(models.Manager):
     def get_ingredient(self, id):
         return self.get(pk=id)
 
+    """ Get all the ingredients in the database """
+    def get_all(self):
+        return self.all()
+
 
 class Ingredient(models.Model):
     objects = IngredientManager()

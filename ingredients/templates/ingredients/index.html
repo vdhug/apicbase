@@ -12,29 +12,20 @@
 		<a class="button-search" href="#">Search</a>
 	</div>
 	<ul class="list-items">
-		<li class="item">
-			<div class="media">
-			<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
-			<ul class="media-body">
-				<li><span>Name</span> Capuccino (CP12)</li>
-				<li><span>Base</span> 100 MG</li>
-				<li><span>Price</span> 12.00 R$</li>
-			</ul>
-			<a href="#">Editar</a>
-			</div>
-		</li>
 
-		<li class="item">
-			<div class="media">
-			<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
-			<ul class="media-body">
-				<li><span>Name</span> Capuccino (CP12)</li>
-				<li><span>Base</span> 100 MG</li>
-				<li><span>Price</span> 12.00 R$</li>
-			</ul>
-			<a href="#">Editar</a>
-			</div>
-		</li>
+		{% for ingredient in ingredients %}
+			<li class="item">
+				<div class="media">
+				<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
+				<ul class="media-body">
+					<li><span>Name</span> {{ingredient.name}} ({{ingredient.article_number}})</li>
+					<li><span>Base</span> {{ingredient.base_amount}} {{ingredient.get_unit_display}}</li>
+					<li><span>Price</span> {{ingredient.base_price}} &euro;</li>
+				</ul>
+				<a href="#">Editar</a>
+				</div>
+			</li>
+		{% endfor %}
 	</ul>
 
 
