@@ -4,6 +4,24 @@
 {% block script %}
 
 <script src="{% static 'ingredients/js/ingredients.js' %}" type="text/javascript"></script>
+{% verbatim %}
+<!-- Prevent conflict between django syntax and Handlebars syntax -->
+    <script id="handlebar-ingredient-show-template" type="text/template">
+				<li class="item">
+					<div class="media">
+					{% endverbatim %}
+					<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
+					{% verbatim %}
+					<ul class="media-body">
+						<li><span>Name</span> {{ name }} ({{ articleNumber }})</li>
+						<li><span>Base</span> {{baseAmount}} {{ unit }}</li>
+						<li><span>Price</span> {{basePrice}} &euro;</li>
+					</ul>
+					<a href="#">Editar</a>
+					</div>
+				</li>
+    </script>
+{% endverbatim %}
 
 {% endblock %}
 
@@ -24,7 +42,7 @@
 				<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
 				<ul class="media-body">
 					<li><span>Name</span> {{ingredient.name}} ({{ingredient.article_number}})</li>
-					<li><span>Base</span> {{ingredient.base_amount}} {{ingredient.get_unit_display}}</li>
+					<li><span>Base</span> {{ingredient.base_amount}} {{ingredient.unit}}</li>
 					<li><span>Price</span> {{ingredient.base_price}} &euro;</li>
 				</ul>
 				<a href="#">Editar</a>

@@ -63,9 +63,9 @@ def filter_ingredients(request):
 	if request.method == "GET":
 		filter = request.GET.get('filter')
 		if filter:
-			ingredients = Ingredient.objects.filter_ingredients()
+			ingredients = Ingredient.objects.filter_ingredients(filter)
 		else:
 			ingredients = Ingredient.objects.get_all()
 		data = serializers.serialize('json', list(ingredients))
 
-		return JsonResponse({'ingredients': data})
+		return JsonResponse(data, safe=False)

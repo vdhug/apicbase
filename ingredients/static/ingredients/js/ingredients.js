@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Get template of showing an ingredient to the user to use in the filter call
+    const template = Handlebars.compile(document.querySelector('#handlebar-ingredient-show-template').innerHTML);
 
     let btnReset = document.querySelector('#reset-form')
     if (btnReset) {
@@ -72,7 +74,27 @@ document.addEventListener('DOMContentLoaded', () => {
   						filter: filter,
   					},
   					success: function(data) {
-  						debugger
+              // Query for list of result
+              debugger
+              var result = JSON.parse(data)
+              var list = document.querySelector(".list-items");
+              list.innerHTML = "";
+              debugger
+              for(var i = 0; i < result.length; i++) {
+                debugger
+                let ingredient = result[i]['fields'];
+                debugger
+                let context = {
+                  "name": ingredient['name'],
+                  "articleNumber": ingredient['article_number'],
+                  "baseAmount": ingredient['base_amount'],
+                  "unit": ingredient['unit'],
+                  "basePrice": ingredient['base_price'],
+                }
+                let content = template(context);
+                list.innerHTML += content;
+
+              }
   					},
   					failure: function(data) {
   						debugger
