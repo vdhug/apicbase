@@ -1,10 +1,11 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Ingredient
+from django.core import serializers
 
 
-# Create your views here.
+""" Render index page from ingredients with all ingredients that are in the database  """
 def ingredients(request):
 	ingredients = Ingredient.objects.get_all()
 	context = {
@@ -14,6 +15,7 @@ def ingredients(request):
 	return render(request, "ingredients/index.html", context)
 
 
+""" Render page to create a new ingredient """
 def add_ingredient(request):
 	if request.method == "GET":
 		context = {}
@@ -23,6 +25,7 @@ def add_ingredient(request):
 		return render(request, "ingredients/ingredient.html", context)
 
 
+""" Receive a POST request, try to save the object and redirect to the same page with a feedback message """
 def save_ingredient(request):
 	if request.method == "POST":
 		id = request.POST['id']
@@ -47,8 +50,22 @@ def save_ingredient(request):
 				"resultMessage": result['message'],
 			}
 			return render(request, "ingredients/ingredient.html", context)
+		# If id do not exist, persist the object in the database
 		else:
 			result = Ingredient.objects.save_ingredient(article_number=articleNumber, name=name,  base_amount=baseAmount, unit=unit, base_price=basePrice)
 			request.session['result_message'] = result['message']
 
 			return HttpResponseRedirect(reverse("add_ingredient"))
+
+
+""" Filter the ingredients accordingly some text passed by the user  """
+def filter_ingredients(request):
+	if request.method == "GET":
+		filter = request.GET.get('filter')
+		if filter:
+			ingredients = Ingredient.objects.filter_ingredients()
+		else:
+			ingredients = Ingredient.objects.get_all()
+		data = serializers.serialize('json', list(ingredients))
+
+		return JsonResponse({'ingredients': data})
