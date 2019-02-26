@@ -1,24 +1,35 @@
 from django.db import models, IntegrityError, DataError
 from django.core.validators import MaxLengthValidator, MinLengthValidator, DecimalValidator, MinValueValidator
 from django.core.exceptions import ValidationError
-
+import pdb
 
 """ IngredientManager, class to manage all the db operations related to the ingredient model """
 class IngredientManager(models.Manager):
 
-    """ Create """
-    def create_ingredient(self, article_number, base_amount, unit, base_price):
+    """ Create and update method """
+    def save_ingredient(self, article_number, base_amount, unit, base_price, id=None):
         try:
-            i = Ingredient(article_number=article_number, base_amount=base_amount, unit=unit, base_price=base_price)
-            i.full_clean()
-            i.save()
-            return {'success': True, 'object': i}
+            i = Ingredient(id=id, article_number=article_number, base_amount=base_amount, unit=unit, base_price=base_price)
+
+            if i.id==None:
+                i.full_clean()
+                i.save()
+            else:
+                i.full_clean(exclude=['id', 'article_number'])
+                self.update(article_number=i.article_number, base_amount=i.base_amount, unit=i.unit, base_price=i.base_price)
+            return {'success': True, 'object': i, 'message': 'Success on saving object'}
+
         except ValidationError as e:
-            return {'success': False, 'message': e}
+            for property, message in e:
+                return {'success': False, 'message': message[0], "property": property}
+
         except IntegrityError as e:
             return {'success': False, 'message': 'There is already an ingredient with that article number.'}
+
         except Exception as e:
-            raise e
+            return {'success': False, 'message': 'Error in create_ingredient method. Raised in path: ingredient.models: line 27\n'+str(e)}
+
+
 
 class Ingredient(models.Model):
     objects = IngredientManager()
@@ -33,7 +44,7 @@ class Ingredient(models.Model):
     """ Creating base amount property with django built in validators. Ensuring that the base amount is a decimal number between 0.00 and 9999999.99 """
     base_amount = models.DecimalField(max_digits=7, decimal_places=2, validators = [
         DecimalValidator(max_digits=7, decimal_places=2),
-        MinValueValidator(limit_value=0.01, message="The base amount cannot be equals to 0.00"),
+        MinValueValidator(limit_value=0.01, message="The base amount has to be greater than 0.00"),
         ]
     )
 
@@ -47,12 +58,16 @@ class Ingredient(models.Model):
     unit = models.CharField(
         choices=UNIT_CHOICES,
         max_length=5,
+        validators = [
+            MaxLengthValidator(limit_value=5, message="The unit abbreviation must be 5 characters maximum."),
+            MinLengthValidator(limit_value=1, message="The unit abbreviation must be 1 character minimum."),
+            ]
     )
 
     """ Creating base price property with django built in validators. Ensuring that the base price is a decimal number between 0.00 and 9999999.99 """
     base_price = models.DecimalField(max_digits=7, decimal_places=2, validators = [
         DecimalValidator(max_digits=7, decimal_places=2),
-        MinValueValidator(limit_value=0.01, message="The base price cannot be equals to 0.00"),
+        MinValueValidator(limit_value=0.01, message="The base price has to be greater than 0.00"),
         ]
     )
 
