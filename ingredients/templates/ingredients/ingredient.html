@@ -11,8 +11,21 @@
         <a class="button-header mr-3 ml-3" href="{% url 'ingredients' %}">Return</a>
     </header>
 
+
+
+    <!-- When a instance is created or updated the feedback will appear here -->
+    {% if resultMessage %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{resultMessage}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+
     <form id="form-ingredient" class="create-item" action="{% url 'save_ingredient' %}" method="POST">
-      {% csrf_token %}
+          {% csrf_token %}
+          <input readonly name="id" style="display: none;" value="{{ingredient.id}}"></input>
           <label for="articleNumber">Article Number</label>
           <input type="text" name="articleNumber" data-name="Article number" value="{{ingredient.article_number}}" autocomplete="off" minlength="1" maxlength="5" required>
           <label for="name">Name</label>
@@ -22,11 +35,11 @@
           <label for="unit">Unit</label>
           <select class="" name="unit" >
               <option value="">Select an unit</option>
-              <option value="kg">Kilo</option>
-              <option value="lt">Liter</option>
+              <option value="KG">Kilo</option>
+              <option value="LT">Liter</option>
           </select>
           <label for="price">Price</label>
-          <input type="number" name="price" data-name="Base price" min="0.00" step='1.00' max="9999999.99" value="{{ingredient.base_price}}" required/>
+          <input type="number" name="basePrice" data-name="Base price" min="0.00" step='1.00' max="9999999.99" value="{{ingredient.base_price}}" required/>
           <div class="error-message">
           </div>
           <a id="reset-form" class="button-clear" href="#">Clear</a>

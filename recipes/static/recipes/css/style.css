@@ -238,6 +238,11 @@ a:hover {
 }
 
 /* Objects */
+
+.alert-success {
+	margin: 10px 20px;
+	color: #252525;
+}
 .create-item div output {
 	padding-top: 10px;
 	position: absolute;

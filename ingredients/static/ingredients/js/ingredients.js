@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (inputElement.type === "number"){
-              debugger
+              // Get numbers and format to two decimal places
               let number = parseFloat(inputElement.value)
               inputElement.value = number.toFixed(2);
             }

@@ -14,7 +14,7 @@ class IngredientManager(models.Manager):
             i.full_clean()
             i.save()
 
-            return {'success': True, 'object': i, 'message': 'Success on saving object'}
+            return {'success': True, 'object': i, 'message': 'Success on saving ingredient'}
 
         except ValidationError as e:
             for property, message in e:
@@ -107,3 +107,6 @@ class Ingredient(models.Model):
 
     """ Tracks when this ingredient was created """
     date_created = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.article_number} - {self.name}"
