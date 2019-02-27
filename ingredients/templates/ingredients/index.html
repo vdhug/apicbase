@@ -51,8 +51,13 @@
 		{% endfor %}
 	</ul>
 
-
 	<span class="d-flex justify-content-center show-more">
-		<a class="button-header mr-3 ml-3" href="#">Show More</a>
+    {% if all_results %}
+      <p id="show-more-message">Nothing more to load</p>
+  		<a id="show-more-button" style="display: none;" class="button-header mr-3 ml-3" data-page=1 href="#">Show More</a>
+    {% else %}
+      <p id="show-more-message"style="display: none;" >Nothing more to load</p>
+  		<a id="show-more-button" class="button-header mr-3 ml-3" data-page=1 href="#">Show More</a>
+    {% endif %}
 	</span>
 {% endblock %}

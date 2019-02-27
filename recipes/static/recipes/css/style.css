@@ -317,6 +317,14 @@ a:hover {
 	bottom: 0;
 }
 
+.show-more p {
+	font-size: 1.125em;
+	font-family: Courier, monospace;
+	font-weight: 500;
+	text-transform: uppercase;
+	color: #252525;
+}
+
 .error-message {
 	color: #dc3545;
   font-size: 1.25rem;

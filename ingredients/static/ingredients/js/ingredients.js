@@ -14,8 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let btnSubmit = document.querySelector('#submit-form');
     if (btnSubmit) {
-      btnSubmit// Add Listener to submit button to submit the form
-      .onclick = (e)  => {
+      // Add Listener to submit button to submit the form
+      btnSubmit.onclick = (e)  => {
           e.preventDefault();
           // Get form
           let form = document.getElementById("form-ingredient");
@@ -75,15 +75,28 @@ document.addEventListener('DOMContentLoaded', () => {
   					},
   					success: function(data) {
               // Query for list of result
-              debugger
               var result = JSON.parse(data)
               var list = document.querySelector(".list-items");
               list.innerHTML = "";
-              debugger
+              let showMoreButton = document.querySelector('#show-more-button');
+              let showMoremessage = document.querySelector('#show-more-message');
+              // Set the dataset attribute to 5, because it is the first time that the query was executed
+              showMoreButton.dataset.page = 5;
+
+              // Check if number of results is less than 2, disable load more
+              if (result.length < 5) {
+                showMoreButton.style.display = "none";
+                showMoremessage.style.display = "block"
+              }
+              else {
+                showMoreButton.style.display = "block";
+                showMoremessage.style.display = "none"
+
+              }
+
               for(var i = 0; i < result.length; i++) {
-                debugger
                 let ingredient = result[i]['fields'];
-                debugger
+
                 let context = {
                   "name": ingredient['name'],
                   "articleNumber": ingredient['article_number'],
@@ -97,7 +110,64 @@ document.addEventListener('DOMContentLoaded', () => {
               }
   					},
   					failure: function(data) {
-  						debugger
+
+  					}
+  				});
+      };
+    }
+
+
+
+    let btnShowMore = document.querySelector('#show-more-button');
+    if (btnShowMore) {
+      // Add Listener to search button to filter the list of ingredients
+      btnShowMore.onclick = (e)  => {
+          e.preventDefault();
+          // Make ajax request
+          let page = parseInt(event.target.dataset.page);
+          $.ajax({
+  					url: 'show_more',
+  					data:{
+  						page: page,
+  					},
+  					success: function(data) {
+              // Query for list of result
+              var result = JSON.parse(data)
+              var list = document.querySelector(".list-items");
+              let showMoreButton = document.querySelector('#show-more-button');
+              let showMoremessage = document.querySelector('#show-more-message');
+              // Set the dataset attribute to 5, because it is the first time that the query was executed
+              debugger
+              showMoreButton.dataset.page = page+5;
+
+              // Check if number of results is less than 5, disable load more
+              if (result.length < 5) {
+                showMoreButton.style.display = "none";
+                showMoremessage.style.display = "block"
+              }
+              else {
+                showMoreButton.style.display = "block";
+                showMoremessage.style.display = "none"
+
+              }
+
+              for(var i = 0; i < result.length; i++) {
+                let ingredient = result[i]['fields'];
+
+                let context = {
+                  "name": ingredient['name'],
+                  "articleNumber": ingredient['article_number'],
+                  "baseAmount": ingredient['base_amount'],
+                  "unit": ingredient['unit'],
+                  "basePrice": ingredient['base_price'],
+                }
+                let content = template(context);
+                list.innerHTML += content;
+
+              }
+  					},
+  					failure: function(data) {
+
   					}
   				});
       };

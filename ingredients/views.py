@@ -7,11 +7,18 @@ from django.core import serializers
 
 """ Render index page from ingredients with all ingredients that are in the database  """
 def ingredients(request):
-	ingredients = Ingredient.objects.get_all()
-	context = {
-		'ingredients': ingredients,
-	}
 
+	context = {}
+	ingredients = Ingredient.objects.get_all()
+	request.session['last_query'] = ""
+
+	""" Loading first 5 results in the screen """
+	if ingredients.count() > 5:
+		ingredients = ingredients[0:5]
+	else:
+		context['all_results'] = True
+
+	context['ingredients'] = ingredients
 	return render(request, "ingredients/index.html", context)
 
 
@@ -62,10 +69,36 @@ def save_ingredient(request):
 def filter_ingredients(request):
 	if request.method == "GET":
 		filter = request.GET.get('filter')
-		if filter:
-			ingredients = Ingredient.objects.filter_ingredients(filter)
-		else:
-			ingredients = Ingredient.objects.get_all()
+
+		ingredients = Ingredient.objects.filter_ingredients(filter)
+		if ingredients.count() > 5:
+			""" Query for first ten  objects """
+			ingredients = ingredients[0:5]
+		""" Saving filter in the cache """
+		request.session['last_query'] = filter
 		data = serializers.serialize('json', list(ingredients))
+
+		return JsonResponse(data, safe=False)
+
+""" Load next 5 or the remaining ingredients object with filter applied  """
+def show_more_ingredients(request):
+	if request.method == "GET":
+		page = int(request.GET.get('page'))
+		filter = ""
+		""" Get text filter cached """
+		if request.session.has_key('last_query'):
+			filter = request.session['last_query']
+
+		ingredients = Ingredient.objects.filter_ingredients(filter)
+
+		if ingredients.count() >= 5*page+5:
+			""" Query for another ten next objects """
+			ingredients = ingredients[page*5:page*5+5]
+		else:
+			""" Query for lest bunch of objects """
+			ingredients = ingredients[page*5:ingredients.count()]
+
+		data = serializers.serialize('json', list(ingredients))
+
 
 		return JsonResponse(data, safe=False)
