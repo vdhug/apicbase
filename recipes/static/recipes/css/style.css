@@ -252,7 +252,7 @@ a:hover {
 }
 .create-item div output span {
 	display: block;
-	text-align: center;
+	margin-left: 30px;
 }
 
 .create-item {

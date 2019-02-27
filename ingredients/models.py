@@ -74,7 +74,7 @@ class Ingredient(models.Model):
 
     """ Creating name property with django built in validators. Ensuring that name will be a char range with min length of 1 and max length of 64 """
     name = models.CharField(max_length=64, validators = [
-        MaxLengthValidator(limit_value=64, message="The name of the article must be 5 characters maximum."),
+        MaxLengthValidator(limit_value=64, message="The name of the article must be 64 characters maximum."),
         MinLengthValidator(limit_value=1, message="The name of the article must be 1 character minimum."),
         ]
     )
