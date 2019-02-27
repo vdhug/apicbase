@@ -38,7 +38,7 @@
                 <option value="{{ x }}"{% if ingredient.unit == x %} selected {% endif %}>{{ y }}</option>
             {% endfor %}
           </select>
-          <label for="price">Base Price</label>
+          <label for="price">Base Price (&euro;)</label>
           <input type="number" name="basePrice" data-name="Base price" min="0" max="9999999" step=any value="{{ingredient.base_price}}" required/>
           <div class="error-message">
           </div>

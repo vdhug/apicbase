@@ -2,6 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get template of showing an ingredient to the user to use in the filter call
     let handlebarTemplate = document.querySelector('#handlebar-ingredient-show-template');
 
+    const UNIT_CHOICES = {
+      'G': 'Grams',
+      'KG': 'Kilograms',
+      'CL': 'Centiliters',
+      'LT': 'Liters',
+  }
 
 
     let btnReset = document.querySelector('#reset-form')
@@ -109,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   "name": ingredient['name'],
                   "articleNumber": ingredient['article_number'],
                   "baseAmount": ingredient['base_amount'],
-                  "unit": ingredient['unit'],
+                  "unit": UNIT_CHOICES[ingredient['unit']],
                   "basePrice": ingredient['base_price'],
                 }
                 let content = template(context);
@@ -165,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   "name": ingredient['name'],
                   "articleNumber": ingredient['article_number'],
                   "baseAmount": ingredient['base_amount'],
-                  "unit": ingredient['unit'],
+                  "unit": UNIT_CHOICES[ingredient['unit']],
                   "basePrice": ingredient['base_price'],
                 }
                 let content = template(context);

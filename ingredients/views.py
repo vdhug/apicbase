@@ -31,12 +31,17 @@ def add_ingredient(request):
 			del request.session['result_message']
 		return render(request, "ingredients/ingredient.html", context)
 
-""" Render page to create a new ingredient """
+
+""" Render page to edit a ingredient """
 def edit_ingredient(request, id):
 	ingredient = Ingredient.objects.get(pk=id)
-	context = {
-		'ingredient': ingredient,
-	}
+	context = {}
+
+	if request.session.has_key('result_message'):
+		context['resultMessage'] = request.session['result_message']
+		del request.session['result_message']
+
+	context['ingredient'] = ingredient
 	return render(request, "ingredients/ingredient.html", context)
 
 
@@ -62,8 +67,9 @@ def save_ingredient(request):
 		if id:
 			result = Ingredient.objects.update_ingredient(id, ingredient)
 			request.session['result_message'] = result['message']
-
-			return HttpResponseRedirect(reverse("add_ingredient"))
+			url = reverse('edit_ingredient', kwargs={'id': id})
+			# Redirect to edit page with feedback message
+			return HttpResponseRedirect(url)
 		# If id do not exist, persist the object in the database
 		else:
 			result = Ingredient.objects.save_ingredient(article_number=articleNumber, name=name,  base_amount=baseAmount, unit=unit, base_price=basePrice)

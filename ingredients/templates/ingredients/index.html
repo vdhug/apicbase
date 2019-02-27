@@ -42,7 +42,7 @@
 				<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
 				<ul class="media-body">
 					<li><span>Name</span> {{ingredient.name}} ({{ingredient.article_number}})</li>
-					<li><span>Base</span> {{ingredient.base_amount}} {{ingredient.unit}}</li>
+					<li><span>Base</span> {{ingredient.base_amount}} {{ingredient.unit_name}}</li>
 					<li><span>Price</span> {{ingredient.base_price}} &euro;</li>
 				</ul>
 				<a href="{% url 'edit_ingredient' ingredient.id %}">Editar</a>

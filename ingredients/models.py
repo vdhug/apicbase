@@ -36,7 +36,7 @@ class IngredientManager(models.Manager):
             ingredient.full_clean()
             ingredient.save()
 
-            return {'success': True, 'message': 'Success on updating object'}
+            return {'success': True, 'message': 'Success on updating ingredient.'}
         except ValidationError as e:
             for property, message in e:
                 return {'success': False, 'message': message[0], "property": property}
@@ -111,16 +111,28 @@ class Ingredient(models.Model):
 
     """ Tracks when this ingredient was created """
     date_created = models.DateField(auto_now_add=True)
+
+    """ Tracks when this ingredient is modifed """
     last_modified = models.DateField(auto_now=True)
 
     def __str__(self):
-        return f"{self.article_number} - {self.name} - {self.last_modified}"
+        return f"{self.article_number} - {self.name} - {self.unit}  - {self.last_modified}"
 
+
+    """ Defining the ordering default to be last_modified descending and in the sequence date_created descending """
     class Meta:
         ordering = ['-last_modified', "-date_created"]
 
+
+    """ Define funciton to get readable name from unit choices """
     def getUnitChoices(self):
         return self.UNIT_CHOICES
 
-    def getUnitName(self):
+
+    """ Define funciton to get readable name from unit selected """
+    def get_unit(self):
         return self.get_unit_display
+
+
+    """ Define a property to return the readable name from the unit of this ingredient """
+    unit_name = property(get_unit)
