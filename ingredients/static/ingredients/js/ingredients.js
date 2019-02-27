@@ -1,9 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get template of showing an ingredient to the user to use in the filter call
     let handlebarTemplate = document.querySelector('#handlebar-ingredient-show-template');
-    if (handlebarTemplate){
-      const template = Handlebars.compile(handlebarTemplate.innerHTML);
-    }
+
 
 
     let btnReset = document.querySelector('#reset-form')
@@ -68,11 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let btnSearch = document.querySelector('.button-search');
     if (btnSearch) {
+      // Compile Handlebars template
+      const template = Handlebars.compile(handlebarTemplate.innerHTML);
       // Add Listener to search button to filter the list of ingredients
       btnSearch.onclick = (e)  => {
           e.preventDefault();
           // Make ajax request
           let filter = document.querySelector('#filter').value;
+
           $.ajax({
   					url: 'filter',
   					data:{
@@ -101,8 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
               for(var i = 0; i < result.length; i++) {
                 let ingredient = result[i]['fields'];
-
+                let obj = result[i]
+                debugger
                 let context = {
+                  "id": obj.pk,
                   "name": ingredient['name'],
                   "articleNumber": ingredient['article_number'],
                   "baseAmount": ingredient['base_amount'],
