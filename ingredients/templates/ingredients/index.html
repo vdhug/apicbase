@@ -45,7 +45,7 @@
 					<li><span>Base</span> {{ingredient.base_amount}} {{ingredient.unit}}</li>
 					<li><span>Price</span> {{ingredient.base_price}} &euro;</li>
 				</ul>
-				<a href="#">Editar</a>
+				<a href="{% url 'edit_ingredient' ingredient.id %}">Editar</a>
 				</div>
 			</li>
 		{% endfor %}

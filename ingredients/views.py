@@ -31,6 +31,14 @@ def add_ingredient(request):
 			del request.session['result_message']
 		return render(request, "ingredients/ingredient.html", context)
 
+""" Render page to create a new ingredient """
+def edit_ingredient(request, id):
+	ingredient = Ingredient.objects.get(pk=id)
+	context = {
+		'ingredient': ingredient,
+	}
+	return render(request, "ingredients/ingredient.html", context)
+
 
 """ Receive a POST request, try to save the object and redirect to the same page with a feedback message """
 def save_ingredient(request):
@@ -43,20 +51,19 @@ def save_ingredient(request):
 		unit = request.POST['unit']
 		ingredient = {
 			'id': id,
-			'articleNumber': articleNumber,
+			'article_number': articleNumber,
 			'name': name,
-			'baseAmount': baseAmount,
-			'basePrice': basePrice,
+			'base_amount': baseAmount,
+			'base_price': basePrice,
 			'unit': unit,
 		}
 
 		# If id exists update the object
 		if id:
-			result = Ingredient.objects.update(ingredient.id, ingredients)
-			context = {
-				"resultMessage": result['message'],
-			}
-			return render(request, "ingredients/ingredient.html", context)
+			result = Ingredient.objects.update_ingredient(id, ingredient)
+			request.session['result_message'] = result['message']
+
+			return HttpResponseRedirect(reverse("add_ingredient"))
 		# If id do not exist, persist the object in the database
 		else:
 			result = Ingredient.objects.save_ingredient(article_number=articleNumber, name=name,  base_amount=baseAmount, unit=unit, base_price=basePrice)

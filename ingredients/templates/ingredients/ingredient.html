@@ -7,7 +7,7 @@
 
 {% block content %}
     <header class="row align-items-center mt-3">
-        <h1 class="col">New Ingredient</h1>
+        <h1 class="col">Ingredient</h1>
         <a class="button-header mr-3 ml-3" href="{% url 'ingredients' %}">Return</a>
     </header>
 
@@ -33,10 +33,10 @@
           <label for="baseAmount">Base Amount</label>
           <input type="number" name="baseAmount" data-name="Base amount" min="0" max="9999999" step=any value="{{ingredient.base_amount}}" required>
           <label for="unit">Unit</label>
-          <select class="" name="unit" >
-              <option value="">Select an unit</option>
-              <option value="KG">Kilo</option>
-              <option value="LT">Liter</option>
+          <select class="" name="unit">
+            {% for x, y in ingredient.getUnitChoices %}
+                <option value="{{ x }}"{% if ingredient.unit == x %} selected {% endif %}>{{ y }}</option>
+            {% endfor %}
           </select>
           <label for="price">Base Price</label>
           <input type="number" name="basePrice" data-name="Base price" min="0" max="9999999" step=any value="{{ingredient.base_price}}" required/>

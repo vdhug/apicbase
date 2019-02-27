@@ -30,11 +30,11 @@ class IngredientManager(models.Manager):
     """ Update method. The variable id refers to the id from the entity wich will be updated and the variable updates refers to a dictionary that contains all the fields that will be updated. """
     def update_ingredient(self, id, updates):
         try:
-            instance = self.get(pk=id)
+            ingredient = self.get(pk=id)
             for attr, value in updates.items():
-                setattr(instance, attr, value)
-            instance.full_clean()
-            instance.save()
+                setattr(ingredient, attr, value)
+            ingredient.full_clean()
+            ingredient.save()
 
             return {'success': True, 'message': 'Success on updating object'}
         except ValidationError as e:
@@ -111,6 +111,16 @@ class Ingredient(models.Model):
 
     """ Tracks when this ingredient was created """
     date_created = models.DateField(auto_now_add=True)
+    last_modified = models.DateField(auto_now=True)
 
     def __str__(self):
-        return f"{self.article_number} - {self.name}"
+        return f"{self.article_number} - {self.name} - {self.last_modified}"
+
+    class Meta:
+        ordering = ['-last_modified', "-date_created"]
+
+    def getUnitChoices(self):
+        return self.UNIT_CHOICES
+
+    def getUnitName(self):
+        return self.get_unit_display

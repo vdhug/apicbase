@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Get template of showing an ingredient to the user to use in the filter call
-    const template = Handlebars.compile(document.querySelector('#handlebar-ingredient-show-template').innerHTML);
+    let handlebarTemplate = document.querySelector('#handlebar-ingredient-show-template');
+    if (handlebarTemplate){
+      const template = Handlebars.compile(handlebarTemplate.innerHTML);
+    }
+
 
     let btnReset = document.querySelector('#reset-form')
     if (btnReset) {
@@ -16,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (btnSubmit) {
       // Add Listener to submit button to submit the form
       btnSubmit.onclick = (e)  => {
+
           e.preventDefault();
           // Get form
           let form = document.getElementById("form-ingredient");
@@ -137,7 +142,6 @@ document.addEventListener('DOMContentLoaded', () => {
               let showMoreButton = document.querySelector('#show-more-button');
               let showMoremessage = document.querySelector('#show-more-message');
               // Set the dataset attribute to 5, because it is the first time that the query was executed
-              debugger
               showMoreButton.dataset.page = page+5;
 
               // Check if number of results is less than 5, disable load more
