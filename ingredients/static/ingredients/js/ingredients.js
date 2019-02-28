@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-    let btnReset = document.querySelector('#reset-form')
+    let btnReset = document.querySelector('#reset-form');
     if (btnReset) {
       // Add Listener to clear button to reset the informations of the form
       btnReset.onclick = (e)  => {

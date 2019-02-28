@@ -29,7 +29,7 @@
         <a class="button-header mr-3 ml-3" href="{% url 'index' %}">Return</a>
     </header>
 
-    <form class="create-item" action="{% url 'save_recipe' %}" method="post">
+    <form id="form-recipe" class="create-item" action="{% url 'save_recipe' %}" method="post">
         <div>
             <output name="estimatedValue">Estimated Value <span>&euro; 12.00</span></output>
             <label for="name">Name</label>
@@ -55,8 +55,8 @@
             <label for="method">Method of preparation</label>
             <textarea name="name" rows="8"></textarea>
 
-            <a class="button-clear" href="#">Clear</a>
-            <a class="button-save" href="#">Save</a>
+            <a id="reset-form" class="button-clear" href="#">Clear</a>
+            <a id="submit-form" class="button-save" href="#">Save</a>
         </div>
     </form>
 
