@@ -90,6 +90,10 @@ class IngredientOfRecipeManager(models.Manager):
             return {'success': False, 'message': 'Error in add_ingredient_of_recipe method. Raised in path: recipes.models: line 47\n'+str(e)}
 
 
+    """ Check if one ingredient is already in the recipe """
+    def is_ingredient_in_recipe(self, recipe_id, ingredient_id):
+        return IngredientOfRecipe.objects.filter(recipe=recipe_id, ingredient=ingredient_id).exists()
+
 
 """ Intermediary model to manage the relationship between recipe and ingredients """
 class IngredientOfRecipe(models.Model):
@@ -98,6 +102,8 @@ class IngredientOfRecipe(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="ingredients")
     ingredient = models.ForeignKey(Ingredient, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"In the recipe: {self.recipe.name} - we need {self.quantity} of {self.ingredient.name}"
 
     """ Creating quantity property with django built in validators. Ensuring that the quantity is a decimal number between 0.00 and 9999999.99 """
     quantity = models.DecimalField(max_digits=7, decimal_places=2, validators = [

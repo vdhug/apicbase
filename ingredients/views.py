@@ -25,7 +25,7 @@ def ingredients(request):
 """ Render page to create a new ingredient """
 def add_ingredient(request):
 	if request.method == "GET":
-		context = {}
+		context = {"ingredient": Ingredient}
 		if request.session.has_key('result_message'):
 			context['resultMessage'] = request.session['result_message']
 			del request.session['result_message']
