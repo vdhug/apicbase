@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                     else {
                       // Check for duplicated ingredients
-                      if (inputElement.value !== "") {
+                      if (inputElement.name == "articleNumber") {
                         if(INGREDIENTS.includes(inputElement.value)){
                           document.querySelector('.error-message').innerHTML = "The ingredient with article number ("+inputElement.value+") is duplicated.";
                           inputElement.focus();
@@ -127,7 +127,7 @@ function getIngredient() {
    INGREDIENT_PARENT = event.target.parentElement.children;
    if(articleNumber !== ""){
      $.ajax({
-       url: 'ingredients/get/'+articleNumber,
+       url: '/ingredients/get/'+articleNumber,
        success: function(data) {
          // Checks if a ingredient was found
          if(data.result){

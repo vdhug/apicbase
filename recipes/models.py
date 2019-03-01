@@ -27,6 +27,27 @@ class RecipeManager(models.Manager):
             return {'success': False, 'message': 'Error in save_recipe method. Raised in path: recipes.models: line 27\n'+str(e)}
 
 
+    """ Update method. The variable id refers to the id from the entity wich will be updated and the variable updates refers to a dictionary that contains all the fields that will be updated. """
+    def update_recipe(self, id, updates):
+        try:
+            recipe = self.get(pk=id)
+            for attr, value in updates.items():
+                setattr(recipe, attr, value)
+            recipe.full_clean()
+            recipe.save()
+
+            return {'success': True, 'message': 'Success on updating recipe.'}
+        except ValidationError as e:
+            for property, message in e:
+                return {'success': False, 'message': message[0], "property": property}
+
+        except IntegrityError as e:
+            return {'success': False, 'message': 'There is already an recipe with that id.'}
+
+        except Exception as e:
+            return {'success': False, 'message': 'Error in update_recipe method. Raised in path: ingredient.models: line 48\n'+str(e)}
+
+
 class Recipe(models.Model):
     objects = RecipeManager()
 
@@ -98,6 +119,27 @@ class IngredientOfRecipeManager(models.Manager):
 
         except Exception as e:
             return {'success': False, 'message': 'Error in add_ingredient_of_recipe method. Raised in path: recipes.models: line 47\n'+str(e)}
+
+
+    """ Update method. The variable id refers to the id from the entity wich will be updated and the variable updates refers to a dictionary that contains all the fields that will be updated. """
+    def update_ingredient_of_recipe(self, id, updates):
+        try:
+            ingredientOfRecipe = self.get(pk=id)
+            for attr, value in updates.items():
+                setattr(ingredientOfRecipe, attr, value)
+            ingredientOfRecipe.full_clean()
+            ingredientOfRecipe.save()
+
+            return {'success': True, 'message': 'Success on updating ingredient of recipe.'}
+        except ValidationError as e:
+            for property, message in e:
+                return {'success': False, 'message': message[0], "property": property}
+
+        except IntegrityError as e:
+            return {'success': False, 'message': 'There is already an ingredient of recipe with that id.'}
+
+        except Exception as e:
+            return {'success': False, 'message': 'Error in update_ingredient_of_recipe method. Raised in path: ingredient.models: line 121\n'+str(e)}
 
 
     """ Check if one ingredient is already in the recipe """

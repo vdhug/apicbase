@@ -41,7 +41,7 @@
     <form id="form-recipe" class="create-item" action="{% url 'save_recipe' %}" method="post">
       {% csrf_token %}
         <div>
-            <input readonly name="id" style="display: none;" value="{{ingredient.id}}"></input>
+            <input readonly name="id" style="display: none;" value="{{recipe.id}}"></input>
             <label for="name">Name</label>
             <input type="text" name="nameOfRecipe" value="{{recipe.name}}" data-name="Name" minlength="1" maxlength="64" required >
             <label for="description">Description</label>
