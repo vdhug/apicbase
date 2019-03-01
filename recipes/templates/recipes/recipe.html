@@ -1,5 +1,7 @@
 {% extends "recipes/layout.html" %}
 {% load static %}
+<!-- Loading helpers functions to use in the template -->
+{% load helpers %}
 
 {% block script %}
 
@@ -36,24 +38,29 @@
     </div>
     {% endif %}
 
-    <p>
-      {{q}}
-    </p>
-
-    <p>
-      {{i}}
-    </p>
-
     <form id="form-recipe" class="create-item" action="{% url 'save_recipe' %}" method="post">
       {% csrf_token %}
         <div>
+            <input readonly name="id" style="display: none;" value="{{ingredient.id}}"></input>
             <label for="name">Name</label>
-            <input type="text" name="nameOfRecipe" value="" data-name="Name" minlength="1" maxlength="64" required >
+            <input type="text" name="nameOfRecipe" value="{{recipe.name}}" data-name="Name" minlength="1" maxlength="64" required >
             <label for="description">Description</label>
-            <input type="text" name="description" value="" data-name="Description"  minlength="1" maxlength="64" required >
+            <input type="text" name="description" value="{{recipe.description}}" data-name="Description"  minlength="1" maxlength="64" required >
             <div class="ingredients">
                 <label for="ingredients">Ingredients</label>
                 <ul id="ingredients">
+                  {% if recipe.ingredients|has_ingredients %}
+                      {% for ingredientOfRecipe in recipe.ingredients.all %}
+                        <li>
+                            <input type="text" name="articleNumber" value="{{ingredientOfRecipe.ingredient.article_number}}" data-name="Article number" minlength="1" maxlength="5" required placeholder="A. Number" onkeyup="getIngredient()">
+                            <i class="fas fa-search"></i>
+                            <input readonly type="text" name="name" value="{{ingredientOfRecipe.ingredient.name}}" placeholder="Name">
+                            <input type="number" name="quantity" value="{{ingredientOfRecipe.quantity}}" data-name="Quantity" min="0" max="9999999" step=any required placeholder="Quantity">
+                            <input readonly type="text" name="unit" value="{{ingredientOfRecipe.ingredient.unit_name}}" placeholder="Unit" step=any>
+                            <i class="fas fa-trash" onclick="removeRecipe()"></i>
+                        </li>
+                      {% endfor %}
+                  {% else %}
                     <li>
                         <input type="text" name="articleNumber" value="" data-name="Article number" minlength="1" maxlength="5" required placeholder="A. Number" onkeyup="getIngredient()">
                         <i class="fas fa-search"></i>
@@ -62,12 +69,13 @@
                         <input readonly type="text" name="unit" value="" placeholder="Unit" step=any>
                         <i class="fas fa-trash" onclick="removeRecipe()"></i>
                     </li>
+                  {% endif %}
                 </ul>
                 <a id="new-ingredient" href="#"><span class="fas fa-plus"></span>New Ingredient</a>
             </div>
 
             <label for="method">Method of preparation</label>
-            <textarea name="method" rows="8" data-name="Method of preparation" minlength="1" required></textarea>
+            <textarea name="method" rows="8" data-name="Method of preparation" minlength="1" required>{{recipe.method_of_preparation}}</textarea>
             <p class="error-message">
             </p>
             <a id="reset-form" class="button-clear" href="#">Clear</a>
