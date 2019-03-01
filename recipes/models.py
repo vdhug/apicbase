@@ -65,6 +65,16 @@ class Recipe(models.Model):
         return len(self.ingredients)
 
 
+    """ Define function to return the total cost of this recipe """
+    def get_cost(self):
+        cost = 0
+        for ingredientOfRecipe in self.ingredients.all():
+            cost += (ingredientOfRecipe.quantity * ingredientOfRecipe.ingredient.base_price)
+        return "{0:.2f}".format(cost)
+
+    """ Define a property to return the cost of the recipe """
+    cost = property(get_cost)
+
     """ Defining the ordering default to be last_modified descending and in the sequence date_created descending """
     class Meta:
         ordering = ['-last_modified', "-date_created"]

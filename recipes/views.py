@@ -7,7 +7,11 @@ from django.core import serializers
 
 # Create your views here.
 def index(request):
-	return render(request, "recipes/index.html")
+	recipes = Recipe.objects.all()
+	context = {
+		"recipes": recipes,
+	}
+	return render(request, "recipes/index.html", context)
 
 
 """ Render page to create a new recipe """

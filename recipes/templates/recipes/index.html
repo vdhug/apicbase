@@ -12,53 +12,19 @@
 		<a class="button-search" href="#">Search</a>
 	</div>
 	<ul class="list-items">
-		<li class="item">
-			<div class="media">
-			<img src="{% static 'recipes/img/cafe-1.jpg' %}" alt="Café 1">
-			<ul class="media-body">
-				<li><span>Name</span> Capuccino</li>
-				<li><span>Price</span> R$ 2,45</li>
-				<li><span>Desc.</span> Café novo no estilo Cappuccino</li>
-			</ul>
-			<a href="#">Editar</a>
-			</div>
-		</li>
-
-		<li class="item">
-			<div class="media">
-			<img src="{% static 'recipes/img/cafe-2.jpg' %}" alt="Café 2">
-			<ul class="media-body">
-				<li><span>Nome</span> Capuccino</li>
-				<li><span>Preço</span> R$ 2,45</li>
-				<li><span>Dados</span> Café novo no estilo Cappuccino</li>
-			</ul>
-			<a href="#">Editar</a>
-			</div>
-		</li>
-
-		<li class="item">
-			<div class="media">
-			<img src="{% static 'recipes/img/cafe-3.jpg' %}" alt="Café 3">
-			<ul class="media-body">
-				<li><span>Nome</span> Capuccino</li>
-				<li><span>Preço</span> R$ 2,45</li>
-				<li><span>Dados</span> Café novo no estilo Cappuccino</li>
-			</ul>
-			<a href="#">Editar</a>
-			</div>
-		</li>
-
-		<li class="item">
-			<div class="media">
-			<img src="{% static 'recipes/img/cafe-4.jpg' %}" alt="Café 4">
-			<ul class="media-body">
-				<li><span>Nome</span> Capuccino</li>
-				<li><span>Preço</span> R$ 2,45</li>
-				<li><span>Dados</span> Café novo no estilo Cappuccino</li>
-			</ul>
-			<a href="#">Editar</a>
-			</div>
-		</li>
+		{% for recipe in recipes %}
+			<li class="item">
+				<div class="media">
+				<img src="{% static 'recipes/img/cafe-1.jpg' %}" alt="Café 1">
+				<ul class="media-body">
+					<li><span>Name</span> {{recipe.name}}</li>
+					<li><span>Price</span> {{recipe.cost}} &euro;</li>
+					<li><span>Desc.</span> {{recipe.description}}</li>
+				</ul>
+				<a href="#">Editar</a>
+				</div>
+			</li>
+		{% endfor %}
 	</ul>
 
 	<span class="d-flex justify-content-center show-more">

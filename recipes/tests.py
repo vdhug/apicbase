@@ -84,3 +84,12 @@ class ModelsTestCase(TestCase):
         recipe = Recipe.objects.get(name="Test")
         result = IngredientOfRecipe.objects.is_ingredient_in_recipe(recipe_id=recipe.id, ingredient_id=i1.id)
         self.assertFalse(result)
+
+
+    """ Check if the get_cost method is working properly """
+    def test_get_cost(self):
+        r = Recipe.objects.get(name="Capuccino")
+        i = Ingredient.objects.get(article_number="CO001")
+
+        result = IngredientOfRecipe.objects.add_ingredient_of_recipe(recipe=r, ingredient=i, quantity=2)
+        self.assertEqual(r.get_cost(), 4)
