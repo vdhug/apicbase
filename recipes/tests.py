@@ -8,7 +8,7 @@ class ModelsTestCase(TestCase):
     def setUp(self):
         # Create ingredients.
         i1 = Ingredient.objects.save_ingredient(name="Coffe", article_number="CO001", base_amount=1.00, unit='LT', base_price=2.00)
-        r1 = Recipe.objects.save_recipe(name="Capuccino", description=" Espresso-based coffee drink prepared with steamed milk foam.", method_of_preparation="Put chocolate with coffe with milk and blend.")
+        r1 = Recipe.objects.save_recipe(name="Capuccino", description="Espresso-based coffee drink prepared with steamed milk foam.", method_of_preparation="Put chocolate with coffe with milk and blend.")
 
 
 

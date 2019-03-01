@@ -358,6 +358,10 @@ a:hover {
 	width: 15%;
 }
 
+.ingredients ul li input[readonly] {
+	background-color: #e7e4d8;
+}
+
 .ingredients ul li input[type=number] {
 	width: 15%;
 }

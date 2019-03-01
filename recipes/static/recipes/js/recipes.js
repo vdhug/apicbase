@@ -125,24 +125,27 @@ var INGREDIENT_PARENT;
 function getIngredient() {
    let articleNumber = event.target.value;
    INGREDIENT_PARENT = event.target.parentElement.children;
-   $.ajax({
-     url: 'ingredients/get/'+articleNumber,
-     success: function(data) {
-       // Checks if a ingredient was found
-       if(data.result){
+   if(articleNumber !== ""){
+     $.ajax({
+       url: 'ingredients/get/'+articleNumber,
+       success: function(data) {
+         // Checks if a ingredient was found
+         if(data.result){
 
-         var result = JSON.parse(data.object);
-         let obj = result[0]['fields']
-         INGREDIENT_PARENT[2].value = obj.name;
-         let number = 1
-         INGREDIENT_PARENT[3].value = number.toFixed(2);
-         debugger
-         INGREDIENT_PARENT[4].value = UNIT_CHOICES[obj.unit];
-         debugger
+           var result = JSON.parse(data.object);
+           let obj = result[0]['fields']
+           INGREDIENT_PARENT[2].value = obj.name;
+           let number = 1
+           INGREDIENT_PARENT[3].value = number.toFixed(2);
+           debugger
+           INGREDIENT_PARENT[4].value = UNIT_CHOICES[obj.unit];
+           debugger
+         }
+       },
+       failure: function(data) {
+
        }
-     },
-     failure: function(data) {
+     });
+   }
 
-     }
-   });
 }
