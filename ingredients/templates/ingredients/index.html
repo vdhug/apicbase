@@ -17,7 +17,7 @@
 						<li><span>Base</span> {{baseAmount}} {{ unit }}</li>
 						<li><span>Price</span> {{basePrice}} &euro;</li>
 					</ul>
-					<a href="edit/{{ id }}">Editar</a>
+					<a class="edit" href="edit/{{ id }}"></a>
 					</div>
 				</li>
     </script>
@@ -45,7 +45,7 @@
 					<li><span>Base</span> {{ingredient.base_amount}} {{ingredient.unit_name}}</li>
 					<li><span>Price</span> {{ingredient.base_price}} &euro;</li>
 				</ul>
-				<a href="{% url 'edit_ingredient' ingredient.id %}">Editar</a>
+				<a class="edit" href="{% url 'edit_ingredient' ingredient.id %}">Editar</a>
 				</div>
 			</li>
 		{% endfor %}

@@ -21,7 +21,9 @@
 					<li><span>Price</span> {{recipe.cost}} &euro;</li>
 					<li><span>Desc.</span> {{recipe.description}}</li>
 				</ul>
-				<a href="{% url 'edit_recipe' recipe.id %}">Editar</a>
+				<a class="edit" href="{% url 'edit_recipe' recipe.id %}">Editar</a>
+				<a href="#"><i class="details fas fa-eye"></i></a>
+
 				</div>
 			</li>
 		{% endfor %}
