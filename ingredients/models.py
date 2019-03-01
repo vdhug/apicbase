@@ -57,6 +57,12 @@ class IngredientManager(models.Manager):
     def get_ingredient(self, id):
         return self.get(pk=id)
 
+
+    """ Get ingredient by article number """
+    def get_ingredient_by_article_number(self, articleNumber):
+        return self.get(article_number=articleNumber)
+
+
     """ Get all the ingredients in the database """
     def get_all(self):
         return self.all()

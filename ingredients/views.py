@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from .models import Ingredient
 from django.core import serializers
+import json
 
 
 """ Render index page from ingredients with all ingredients that are in the database  """
@@ -92,6 +93,22 @@ def filter_ingredients(request):
 		data = serializers.serialize('json', list(ingredients))
 
 		return JsonResponse(data, safe=False)
+
+
+""" Get ingredient by article number  """
+def get_ingredient(request, articleNumber):
+	if request.method == "GET":
+		try:
+			ingredient = Ingredient.objects.get_ingredient_by_article_number(articleNumber)
+			data = serializers.serialize('json', [ingredient])
+			obj = {"result": True, "object": data}
+			return JsonResponse(obj, safe=False)
+		except Ingredient.DoesNotExist:
+			result = {"success": False}
+			return JsonResponse(result, safe=False)
+
+
+
 
 """ Load next 5 or the remaining ingredients object with filter applied  """
 def show_more_ingredients(request):

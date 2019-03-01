@@ -9,4 +9,5 @@ urlpatterns = [
     path("edit/<int:id>", views.edit_ingredient, name="edit_ingredient"),
     path("filter", views.filter_ingredients, name="filter_ingredients"),
     path("show_more", views.show_more_ingredients, name="show_more_ingredients"),
+    path("get/<str:articleNumber>", views.get_ingredient, name="get_ingredient"),
 ]

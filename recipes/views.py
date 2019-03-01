@@ -22,4 +22,8 @@ def add_recipe(request):
 
 def save_recipe(request):
 	if request.method == "POST":
-		return render(request, "recipes/recipe.html")
+		q = request.POST
+		articleNumbers = q.getlist('articleNumber')
+		quantities = q.getlist('quantity')
+		i = dict(zip(articleNumbers, quantities))
+		return render(request, "recipes/recipe.html", {"q": q, "i": i})
