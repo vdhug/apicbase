@@ -252,7 +252,7 @@ a:hover {
 }
 .create-item div output span {
 	display: block;
-	margin-left: 30px;
+	margin-left: 45px;
 }
 
 .create-item {
@@ -346,6 +346,25 @@ a:hover {
 .details:hover {
 	cursor: pointer;
 	color: #C1713C;
+}
+
+.recipe-details {
+	font-family: Georgia, serif;
+ 	font-size: 1.125em;
+}
+.recipe-details label {
+	font-size: 2rem;
+}
+
+.recipe-details ul {
+	margin-bottom: 25px;
+}
+.recipe-details ul li {
+		font-family: Courier, monospace;
+}
+
+.recipe-details ul li p {
+	text-transform: lowercase;
 }
 
 .ingredients ul li {

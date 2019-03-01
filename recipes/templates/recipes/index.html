@@ -18,11 +18,11 @@
 				<img src="{% static 'recipes/img/cafe-1.jpg' %}" alt="Café 1">
 				<ul class="media-body">
 					<li><span>Name</span> {{recipe.name}}</li>
-					<li><span>Price</span> {{recipe.cost}} &euro;</li>
+					<li><span>Cost</span> {{recipe.cost}} &euro;</li>
 					<li><span>Desc.</span> {{recipe.description}}</li>
 				</ul>
 				<a class="edit" href="{% url 'edit_recipe' recipe.id %}">Editar</a>
-				<a href="#"><i class="details fas fa-eye"></i></a>
+				<a href="{% url 'details' recipe.id %}"><i class="details fas fa-eye"></i></a>
 
 				</div>
 			</li>

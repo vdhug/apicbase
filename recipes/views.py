@@ -37,6 +37,15 @@ def edit_recipe(request, id):
 	return render(request, "recipes/recipe.html", context)
 
 
+""" Render view to see details about one recipe """
+def details(request, id):
+	recipe = Recipe.objects.get(pk=id)
+	context = {
+		"recipe": recipe,
+	}
+
+	return render(request, "recipes/details.html", context)
+
 def save_recipe(request):
 	if request.method == "POST":
 		q = request.POST

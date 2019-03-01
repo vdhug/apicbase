@@ -1,0 +1,34 @@
+{% extends "recipes/layout.html" %}
+{% load static %}
+
+{% block content %}
+    <header class="row align-items-center mt-3">
+        <h1 class="col">{{recipe.name}}</h1>
+        <a class="button-header mr-3 ml-3" href="{% url 'index' %}">Return</a>
+    </header>
+
+    <form class="recipe-details create-item">
+      <div class="">
+         <output>Estimated Value: <span>{{recipe.cost}} &euro;</span></output>
+         <label>&sect; Description</label>
+         <ul>
+            <li>{{recipe.description}}</li>
+         </ul>
+
+         <label>&sect; Ingredients</label>
+         <ul>
+           {% for ingredientOfRecipe in recipe.ingredients.all %}
+            <li><p> &bull; {{ingredientOfRecipe.quantity}} {{ingredientOfRecipe.ingredient.unit_name}} of {{ingredientOfRecipe.ingredient.name}}</p></li>
+           {% endfor %}
+         </ul>
+
+         <label>&sect; Method</label>
+         <ul>
+            <li>{{recipe.method_of_preparation}}</li>
+         </ul>
+
+      </div>
+
+    </form>
+
+{% endblock %}
