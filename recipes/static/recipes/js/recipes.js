@@ -213,5 +213,13 @@ function getIngredient() {
        }
      });
    }
+}
 
+
+// Trigger filter event via key enter press in the input
+function search() {
+    //See notes about 'which' and 'key'
+    if (event.keyCode == 13) {
+        document.querySelector(".button-search").click();
+    }
 }

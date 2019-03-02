@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
+
+
     let btnReset = document.querySelector('#reset-form');
     if (btnReset) {
       // Add Listener to clear button to reset the informations of the form
@@ -109,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
               for(var i = 0; i < result.length; i++) {
                 let ingredient = result[i]['fields'];
                 let obj = result[i]
-                debugger
+
                 let context = {
                   "id": obj.pk,
                   "name": ingredient['name'],
@@ -129,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
   				});
       };
     }
-
 
 
     let btnShowMore = document.querySelector('#show-more-button');
@@ -187,3 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
 });
+
+// Trigger filter event via key enter press in the input
+function search() {
+    //See notes about 'which' and 'key'
+    if (event.keyCode == 13) {
+        document.querySelector(".button-search").click();
+    }
+}

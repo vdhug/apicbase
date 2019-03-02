@@ -62,7 +62,7 @@ def save_recipe(request):
 		ingredients = dict(zip(articleNumbers, quantities))
 		id = q['id']
 		# If id exists update the object
-		if id:
+		if id != 'None':
 			""" Retrieve recipe object """
 			updates = {
 				"name": q['nameOfRecipe'],

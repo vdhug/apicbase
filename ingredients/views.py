@@ -65,7 +65,7 @@ def save_ingredient(request):
 		}
 
 		# If id exists update the object
-		if id:
+		if id != 'None':
 			result = Ingredient.objects.update_ingredient(id, ingredient)
 			request.session['result_message'] = result['message']
 			url = reverse('edit_ingredient', kwargs={'id': id})
