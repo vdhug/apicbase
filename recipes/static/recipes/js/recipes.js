@@ -158,10 +158,10 @@ document.addEventListener('DOMContentLoaded', () => {
               for(var i = 0; i < Object.keys(data).length; i++) {
 
                 let recipe_cost = data[i][1];
-                debugger
+
                 let recipe = JSON.parse(data[i][0]);
                 let id = recipe[0].pk;
-                debugger
+
                 let context = {
                   "id": id,
                   "name": recipe[0]['fields']['name'],
@@ -209,9 +209,9 @@ function getIngredient() {
            INGREDIENT_PARENT[2].value = obj.name;
            let number = 1
            INGREDIENT_PARENT[3].value = number.toFixed(2);
-           debugger
+
            INGREDIENT_PARENT[4].value = UNIT_CHOICES[obj.unit];
-           debugger
+           
          }
        },
        failure: function(data) {
