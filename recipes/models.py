@@ -48,6 +48,11 @@ class RecipeManager(models.Manager):
             return {'success': False, 'message': 'Error in update_recipe method. Raised in path: ingredient.models: line 48\n'+str(e)}
 
 
+    """ Function that filter recipes by name and description """
+    def filter_recipes(self, text):
+        return self.filter(Q(name__icontains=text) | Q(description__icontains=text))
+
+
 class Recipe(models.Model):
     objects = RecipeManager()
 

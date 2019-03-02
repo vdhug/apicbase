@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Retrieve and compile Handlebars template
 
     const template = document.querySelector('#handlebar-ingredient-template');
+    const handlebarTemplate = document.querySelector('#handlebar-recipe-show-template');
 
 
 
@@ -112,6 +113,71 @@ document.addEventListener('DOMContentLoaded', () => {
           form.submit();
       };
     }
+
+
+    let btnSearch = document.querySelector('.button-search');
+    if (btnSearch) {
+      // Compile Handlebars template
+
+      const template = Handlebars.compile(handlebarTemplate.innerHTML);
+      // Add Listener to search button to filter the list of ingredients
+      btnSearch.onclick = (e)  => {
+          e.preventDefault();
+          // Make ajax request
+          let filter = document.querySelector('#filter').value;
+
+          $.ajax({
+  					url: '/filter',
+  					data:{
+  						filter: filter,
+  					},
+  					success: function(data) {
+
+              // Query for list of result
+              var list = document.querySelector(".list-items");
+              list.innerHTML = "";
+              let showMoreButton = document.querySelector('#show-more-button');
+              let showMoremessage = document.querySelector('#show-more-message');
+              // Set the dataset attribute to 5, because it is the first time that the query was executed
+              showMoreButton.dataset.page = 5;
+
+              // Check if number of results is less than 2, disable load more
+              if (Object.keys(data).length < 5) {
+                showMoreButton.style.display = "none";
+                showMoremessage.style.display = "block"
+              }
+              else {
+                showMoreButton.style.display = "block";
+                showMoremessage.style.display = "none"
+
+              }
+
+              for(var i = 0; i < Object.keys(data).length; i++) {
+
+                let recipe_cost = data[i][1];
+                debugger
+                let recipe = JSON.parse(data[i][0]);
+                let id = recipe[0].pk;
+                debugger
+                let context = {
+                  "id": id,
+                  "name": recipe[0]['fields']['name'],
+                  "description": recipe[0]['fields']['description'],
+                  "cost": recipe_cost,
+                }
+                let content = template(context);
+                list.innerHTML += content;
+
+              }
+  					},
+  					failure: function(data) {
+
+  					}
+  				});
+      };
+    }
+
+
 
 });
 

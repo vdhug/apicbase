@@ -250,9 +250,10 @@ a:hover {
 	font-size: 1.125em;
 	margin-right: 60px;
 }
+
 .create-item div output span {
 	display: block;
-	margin-left: 45px;
+	margin-left: 40px;
 }
 
 .create-item {

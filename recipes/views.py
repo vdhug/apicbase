@@ -7,10 +7,17 @@ from django.core import serializers
 
 # Create your views here.
 def index(request):
+	context = {}
 	recipes = Recipe.objects.all()
-	context = {
-		"recipes": recipes,
-	}
+	request.session['last_query'] = ""
+
+	""" Loading first 5 results in the screen """
+	if recipes.count() > 5:
+		recipes = recipes[0:5]
+	else:
+		context['all_results'] = True
+
+	context['recipes'] = recipes
 	return render(request, "recipes/index.html", context)
 
 
@@ -107,3 +114,22 @@ def save_recipe(request):
 			request.session['result_message'] = result['message']
 
 			return HttpResponseRedirect(reverse("add_recipe"))
+
+
+""" Filter the recipes accordingly some text passed by the user  """
+def filter_recipes(request):
+	if request.method == "GET":
+		filter = request.GET.get('filter')
+
+		recipes = Recipe.objects.filter_recipes(filter)
+		if recipes.count() > 5:
+			""" Query for first ten  objects """
+			recipes = recipes[0:5]
+		""" Saving filter in the cache """
+		request.session['last_query'] = filter
+
+		result = []
+		for recipe in recipes:
+			result.append((serializers.serialize('json', [ recipe, ]), recipe.cost))
+
+		return JsonResponse(result, safe=False)

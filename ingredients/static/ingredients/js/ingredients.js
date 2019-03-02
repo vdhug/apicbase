@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let filter = document.querySelector('#filter').value;
 
           $.ajax({
-  					url: 'filter',
+  					url: '/ingredients/filter',
   					data:{
   						filter: filter,
   					},
