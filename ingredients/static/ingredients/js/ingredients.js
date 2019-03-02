@@ -79,6 +79,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // Add Listener to search button to filter the list of ingredients
       btnSearch.onclick = (e)  => {
           e.preventDefault();
+
+          let loader = document.querySelector('.loader');
+          // show loader
+          loader.style.display = "block";
           // Make ajax request
           let filter = document.querySelector('#filter').value;
 
@@ -124,6 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 list.innerHTML += content;
 
               }
+
+              loader.style.display = "none";
   					},
   					failure: function(data) {
 
