@@ -33,11 +33,14 @@
 			</a>
 			<nav class="header-menu mr-3 ml-3">
 				<ul>
-					{% if not_authenticated %}
-					<li><a href="{% url 'login' %}">Login</a></li>
-					{% else %}
-					<li><a href="#">Logout</a></li>
-					{% endif %}
+							<!-- Checks if variable exists  -->
+							{% if auth %}
+								<li><a href="{% url 'login' %}">Login</a></li>
+							<!-- If variable does not exist render logout -->
+							{% else %}
+								<li><a href="{% url 'logout' %}">Logout</a></li>
+							{% endif %}
+
 					<li><a href="{% url 'process' %}">Process of this project</a></li>
 				</ul>
 			</nav>
@@ -51,8 +54,9 @@
 		<nav class="side-nav col-md-4 col-xl-3">
 			<ul>
 				<li><a class="nav-recipes" href="{% url 'index' %}">Recipes</a></li>
-				{% if not not_authenticated %}
-				<li><a class="nav-ingredients" href="{% url 'ingredients' %}">Ingredients</a></li>
+				{% if auth %}
+				{% else %}
+					<li><a class="nav-ingredients" href="{% url 'ingredients' %}">Ingredients</a></li>
 				{% endif %}
 			</ul>
 		</nav>

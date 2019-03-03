@@ -21,7 +21,13 @@
 			<li><span>Cost</span> {{cost}} &euro;</li>
 			<li><span>Desc.</span> {{description}}</li>
 		</ul>
-		<a class="edit" href="edit/{{id}}">Editar</a>
+			{% endverbatim %}
+				{% if authenticated is True %}
+					{% verbatim %}
+						<a class="edit" href="edit/{{id}}">Editar</a>
+					{% endverbatim %}
+				{% endif %}
+			{% verbatim %}
 		<a href="details/{{id}}"><i class="details fas fa-eye"></i></a>
 		</div>
 	</li>
@@ -35,7 +41,10 @@
 
 	<header class="row align-items-center mt-3">
 		<h1 class="col">Recipes</h1>
-		<a class="button-header mr-3 ml-3" href="{% url 'add_recipe' %}">Add recipe</a>
+		<!-- If authenticated is true show link to add new recipe -->
+		{% if authenticated is True %}
+			<a class="button-header mr-3 ml-3" href="{% url 'add_recipe' %}">Add recipe</a>
+		{% endif %}
 	</header>
 	<div class="filters">
 		<input id="filter" type="text" name="filter" value="" onkeypress="search()">
@@ -51,7 +60,10 @@
 					<li><span>Cost</span> {{recipe.cost}} &euro;</li>
 					<li><span>Desc.</span> {{recipe.description}}</li>
 				</ul>
-				<a class="edit" href="{% url 'edit_recipe' recipe.id %}">Editar</a>
+				<!-- If authenticated is true show link to edit this recipe -->
+				{% if authenticated is True %}
+					<a class="edit" href="{% url 'edit_recipe' recipe.id %}">Editar</a>
+				{% endif %}
 				<a href="{% url 'details' recipe.id %}"><i class="details fas fa-eye"></i></a>
 
 				</div>

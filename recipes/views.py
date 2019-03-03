@@ -5,6 +5,7 @@ from ingredients.models import Ingredient
 from .models import Recipe, IngredientOfRecipe
 from django.core import serializers
 from django.http import Http404
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -20,10 +21,14 @@ def index(request):
 		context['all_results'] = True
 
 	context['recipes'] = recipes
+	context['authenticated'] = request.user.is_authenticated
+	if not request.user.is_authenticated:
+		context['auth'] = "auth"
 	return render(request, "recipes/index.html", context)
 
 
 """ Render page to create a new recipe """
+@login_required
 def add_recipe(request):
 	if request.method == "GET":
 		context = {"recipe": Recipe}
@@ -34,6 +39,7 @@ def add_recipe(request):
 
 
 """ Render page to edit a recipe """
+@login_required
 def edit_recipe(request, id):
 	try:
 		recipe = Recipe.objects.get(pk=id)
@@ -62,6 +68,7 @@ def details(request, id):
 	return render(request, "recipes/details.html", context)
 
 
+@login_required
 def save_recipe(request):
 	if request.method == "POST":
 		q = request.POST
