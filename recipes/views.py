@@ -6,9 +6,6 @@ from .models import Recipe, IngredientOfRecipe
 from django.core import serializers
 from django.http import Http404
 
-""" View to show a little joke about the creative process of this project """
-def process(request):
-	return render(request, "recipes/process.html")
 
 # Create your views here.
 def index(request):

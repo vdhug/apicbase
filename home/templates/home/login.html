@@ -1,0 +1,23 @@
+{% extends "home/layout.html" %}
+{% load static %}
+{% block title %}
+  Login
+{% endblock %}
+
+{% block content %}
+    <header class="row align-items-center mt-3">
+        <h1 class="col">Login</h1>
+        <a class="button-header mr-3 ml-3" href="{% url 'index' %}">Return</a>
+    </header>
+
+    <form class="create-item" action="index.html" method="POST">
+      <label for="name">Name</label>
+      <input type="text" name="name" data-name="Name" minlength="1" maxlength="64" required >
+      <label for="password">Password</label>
+      <input type="password" name="password" data-name="Password" minlength="1" maxlength="64" required >
+      <p class="error-message">
+      </p>
+      <a id="reset-form" class="button-clear" href="#">Clear</a>
+      <a id="submit-form" class="button-save" href="#">Login</a>
+    </form>
+{% endblock %}

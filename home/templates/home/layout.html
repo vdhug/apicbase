@@ -10,8 +10,8 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	<link rel="stylesheet" type="text/css" href="{% static 'recipes/css/style.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'recipes/css/responsive.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'home/css/responsive.css' %}">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	{% block script %}
 	{% endblock %}
@@ -29,10 +29,11 @@
 	<div class="container-fluid">
 		<div class="row">
 			<a class="header-logo mr-auto col-md-4" href="/">
-				<img src="{% static 'recipes/img/brafe.png' %}" alt="Brafé">
+				<img src="{% static 'home/img/brafe.png' %}" alt="Brafé">
 			</a>
 			<nav class="header-menu mr-3 ml-3">
 				<ul>
+					<li><a href="{% url 'login' %}">Login</a></li>
 					<li><a href="{% url 'process' %}">Process of this project</a></li>
 				</ul>
 			</nav>
@@ -55,9 +56,10 @@
 		<section class="content col-md-8 col-xl-9 mb-5">
             {% block content %}
             {% endblock %}
-
 		</section>
 	</div>
+
+
 </main>
 
 <footer class="footer">

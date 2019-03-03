@@ -1,4 +1,4 @@
-{% extends "recipes/layout.html" %}
+{% extends "home/layout.html" %}
 {% load static %}
 
 {% block title %}
@@ -14,7 +14,7 @@
 	<li class="item">
 		<div class="media">
 		{% endverbatim %}
-		<img src="{% static 'recipes/img/cafe-1.jpg' %}" alt="Café 1">
+		<img src="{% static 'home/img/cafe-1.jpg' %}" alt="Café 1">
 		{% verbatim %}
 		<ul class="media-body">
 			<li><span>Name</span> {{name}}</li>
@@ -45,7 +45,7 @@
 		{% for recipe in recipes %}
 			<li class="item">
 				<div class="media">
-				<img src="{% static 'recipes/img/cafe-1.jpg' %}" alt="Café 1">
+				<img src="{% static 'home/img/cafe-1.jpg' %}" alt="Café 1">
 				<ul class="media-body">
 					<li><span>Name</span> {{recipe.name}}</li>
 					<li><span>Cost</span> {{recipe.cost}} &euro;</li>

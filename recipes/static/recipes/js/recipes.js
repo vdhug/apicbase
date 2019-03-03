@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let filter = document.querySelector('#filter').value;
 
           $.ajax({
-  					url: '/filter',
+  					url: '/recipes/filter',
   					data:{
   						filter: filter,
   					},
@@ -196,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
               // Make ajax request
               let page = parseInt(event.target.dataset.page);
               $.ajax({
-      					url: '/show_more',
+      					url: '/recipes/show_more',
       					data:{
       						page: page,
       					},

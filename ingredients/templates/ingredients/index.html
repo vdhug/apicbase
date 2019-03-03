@@ -1,4 +1,4 @@
-{% extends "recipes/layout.html" %}
+{% extends "home/layout.html" %}
 {% load static %}
 {% block title %}Ingredients {% endblock %}
 
@@ -11,7 +11,7 @@
 				<li class="item">
 					<div class="media">
 					{% endverbatim %}
-					<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
+					<img src="{% static 'home/img/cafe-1.jpg' %}" alt="Café 1">
 					{% verbatim %}
 					<ul class="media-body">
 						<li><span>Name</span> {{ name }} ({{ articleNumber }})</li>
@@ -40,7 +40,7 @@
 		{% for ingredient in ingredients %}
 			<li class="item">
 				<div class="media">
-				<img src="{% static 'ingredients/img/cafe-1.jpg' %}" alt="Café 1">
+				<img src="{% static 'home/img/cafe-1.jpg' %}" alt="Café 1">
 				<ul class="media-body">
 					<li><span>Name</span> {{ingredient.name}} ({{ingredient.article_number}})</li>
 					<li><span>Base</span> {{ingredient.base_amount}} {{ingredient.unit_name}}</li>
