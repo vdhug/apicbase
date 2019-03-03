@@ -48,6 +48,22 @@ a:hover {
 	flex-wrap: wrap;
 }
 
+.header-menu ul li a::after {
+	content: '';
+	display: block;
+  height: 2px;
+	margin-top: 3px;
+	width: 80%;
+  background-color: #252525;
+	transform: scaleX(0);
+  transition: .25s linear;
+}
+
+.header-menu ul li a:hover::after {
+	visibility: visible;
+	transform: scaleX(1);
+}
+
 .header-menu li:first-child a {
 	padding-left: 0px;
 }
@@ -87,18 +103,17 @@ a:hover {
 	content: '';
 	display: block;
 	margin-left: 39px;
-    height: 2px;
+  height: 2px;
 	margin-top: 3px;
 	width: 25%;
-    background-color: #FFF;
+  background-color: #FFF;
 	transform: scaleX(0);
-  	transition: .25s linear;
+  transition: .25s linear;
 }
 
 .side-nav li a:hover::after {
 	visibility: visible;
 	transform: scaleX(1);
-
 }
 
 .nav-ingredients::before {
@@ -413,6 +428,18 @@ a:hover {
 
 .ingredients a:hover {
 	color: #c17139;
+}
+
+/* Joke */
+.joke-picture {
+	margin-top: 20px;
+}
+.joke-picture img {
+	max-width: 100%;
+	max-height: 100%;
+}
+.joke-picture p {
+	margin-top: 10px;
 }
 
 /* Loader */
