@@ -4,6 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from ingredients.models import Ingredient
 from .models import Recipe, IngredientOfRecipe
 from django.core import serializers
+from django.http import Http404
+
 
 # Create your views here.
 def index(request):
@@ -33,7 +35,10 @@ def add_recipe(request):
 
 """ Render page to edit a recipe """
 def edit_recipe(request, id):
-	recipe = Recipe.objects.get(pk=id)
+	try:
+		recipe = Recipe.objects.get(pk=id)
+	except Recipe.DoesNotExist as e:
+		raise Http404("Recipe does not exist")
 	context = {}
 
 	if request.session.has_key('result_message'):
@@ -46,12 +51,16 @@ def edit_recipe(request, id):
 
 """ Render view to see details about one recipe """
 def details(request, id):
-	recipe = Recipe.objects.get(pk=id)
+	try:
+		recipe = Recipe.objects.get(pk=id)
+	except Recipe.DoesNotExist:
+		raise Http404("Recipe does not exist")
+
 	context = {
 		"recipe": recipe,
 	}
-
 	return render(request, "recipes/details.html", context)
+
 
 def save_recipe(request):
 	if request.method == "POST":

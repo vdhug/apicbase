@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Http404
 from .models import Ingredient
 from django.core import serializers
 import json
@@ -35,7 +35,11 @@ def add_ingredient(request):
 
 """ Render page to edit a ingredient """
 def edit_ingredient(request, id):
-	ingredient = Ingredient.objects.get(pk=id)
+	try:
+		ingredient = Ingredient.objects.get(pk=id)
+	except Ingredient.DoesNotExist as e:
+		raise Http404("Ingredient does not exist")
+
 	context = {}
 
 	if request.session.has_key('result_message'):
