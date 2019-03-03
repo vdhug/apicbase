@@ -9,4 +9,5 @@ def process(request):
 """ Render login page in GET request | authenticate user in POST request"""
 def login(request):
 	if request.method == "GET":
-		return render(request, "home/login.html")
+		context = {"not_authenticated": True}
+		return render(request, "home/login.html", context)

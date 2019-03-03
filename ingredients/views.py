@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.urls import reverse
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, Http404
+from django.contrib.auth.decorators import login_required
 from .models import Ingredient
 from django.core import serializers
 import json
 
 
 """ Render index page from ingredients with all ingredients that are in the database  """
+@login_required
 def ingredients(request):
 
 	context = {}
@@ -24,6 +26,7 @@ def ingredients(request):
 
 
 """ Render page to create a new ingredient """
+@login_required
 def add_ingredient(request):
 	if request.method == "GET":
 		context = {"ingredient": Ingredient}
@@ -34,6 +37,7 @@ def add_ingredient(request):
 
 
 """ Render page to edit a ingredient """
+@login_required
 def edit_ingredient(request, id):
 	try:
 		ingredient = Ingredient.objects.get(pk=id)
@@ -51,6 +55,7 @@ def edit_ingredient(request, id):
 
 
 """ Receive a POST request, try to save the object and redirect to the same page with a feedback message """
+@login_required
 def save_ingredient(request):
 	if request.method == "POST":
 		id = request.POST['id']
@@ -84,6 +89,7 @@ def save_ingredient(request):
 
 
 """ Filter the ingredients accordingly some text passed by the user  """
+@login_required
 def filter_ingredients(request):
 	if request.method == "GET":
 		filter = request.GET.get('filter')
@@ -100,6 +106,7 @@ def filter_ingredients(request):
 
 
 """ Get ingredient by article number  """
+@login_required
 def get_ingredient(request, articleNumber):
 	if request.method == "GET":
 		try:
@@ -113,6 +120,7 @@ def get_ingredient(request, articleNumber):
 
 
 """ Load next 5 or the remaining ingredients object with filter applied  """
+@login_required
 def show_more_ingredients(request):
 	if request.method == "GET":
 		page = int(request.GET.get('page'))
