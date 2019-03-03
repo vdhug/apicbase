@@ -1,0 +1,42 @@
+/*Estilo para tablets*/
+@media only screen and (min-width: 768px) and (max-width: 959px) {
+
+} /* Final do estilo para tablets */
+
+/*Estilo para smartphone*/
+@media only screen and (max-width: 767px) {
+
+.header-menu ul li a::after {
+	display: none;
+}
+
+.filters {
+	margin-top: 20px;
+}
+
+.filters input {
+	width: 65%;
+}
+
+.media img {
+	display: none;
+}
+
+.ingredients ul li input, .ingredients ul li input[name="articleNumber"], .create-item input, .ingredients ul li input[readonly], .ingredients ul li input[type=number], .create-item select  {
+	width: 80%;
+}
+.ingredients ul li input {
+	margin-top: 10px;
+}
+
+.create-item div output {
+	padding-top: 0px;
+	margin-right: 40px;
+}
+
+.button-header {
+	margin-top: 10px;
+	margin-right: 150px !important;
+}
+
+} /* Final do estilo para smartphone
