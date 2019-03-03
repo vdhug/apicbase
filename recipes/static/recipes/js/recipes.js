@@ -183,7 +183,68 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
+    let btnShowMore = document.querySelector('#show-more-button');
+      if (btnShowMore) {
 
+          // Add Listener to search button to filter the list of ingredients
+          btnShowMore.onclick = (e)  => {
+              const template = Handlebars.compile(handlebarTemplate.innerHTML);
+              e.preventDefault();
+              let loader = document.querySelector('.loader');
+              // show loader
+              loader.style.display = "block";
+              // Make ajax request
+              let page = parseInt(event.target.dataset.page);
+              $.ajax({
+      					url: '/show_more',
+      					data:{
+      						page: page,
+      					},
+      					success: function(data) {
+                  // Query for list of result
+                  var list = document.querySelector(".list-items");
+                  let showMoreButton = document.querySelector('#show-more-button');
+                  let showMoremessage = document.querySelector('#show-more-message');
+                  // Set the dataset attribute to 5, because it is the first time that the query was executed
+                  showMoreButton.dataset.page = page+5;
+
+                  // Check if number of results is less than 5, disable load more
+                  if (Object.keys(data).length < 5) {
+                    showMoreButton.style.display = "none";
+                    showMoremessage.style.display = "block"
+                  }
+                  else {
+                    showMoreButton.style.display = "block";
+                    showMoremessage.style.display = "none"
+
+                  }
+
+                  for(var i = 0; i < Object.keys(data).length; i++) {
+
+                    let recipe_cost = data[i][1];
+
+                    let recipe = JSON.parse(data[i][0]);
+                    let id = recipe[0].pk;
+
+                    let context = {
+                      "id": id,
+                      "name": recipe[0]['fields']['name'],
+                      "description": recipe[0]['fields']['description'],
+                      "cost": recipe_cost,
+                    }
+                    let content = template(context);
+                    list.innerHTML += content;
+                  }
+
+                  loader.style.display = "none";
+
+      					},
+      					failure: function(data) {
+
+      					}
+      				});
+          };
+      }
 
 });
 
@@ -211,7 +272,7 @@ function getIngredient() {
            INGREDIENT_PARENT[3].value = number.toFixed(2);
 
            INGREDIENT_PARENT[4].value = UNIT_CHOICES[obj.unit];
-           
+
          }
        },
        failure: function(data) {

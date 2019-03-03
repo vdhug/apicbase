@@ -128,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 list.innerHTML += content;
 
               }
-
               loader.style.display = "none";
   					},
   					failure: function(data) {
@@ -144,14 +143,20 @@ document.addEventListener('DOMContentLoaded', () => {
       // Add Listener to search button to filter the list of ingredients
       btnShowMore.onclick = (e)  => {
           e.preventDefault();
+          const template = Handlebars.compile(handlebarTemplate.innerHTML);
+          let loader = document.querySelector('.loader');
+          // show loader
+          loader.style.display = "block";
+          debugger
           // Make ajax request
           let page = parseInt(event.target.dataset.page);
           $.ajax({
-  					url: 'show_more',
+  					url: '/ingredients/show_more',
   					data:{
   						page: page,
   					},
   					success: function(data) {
+
               // Query for list of result
               var result = JSON.parse(data)
               var list = document.querySelector(".list-items");
@@ -183,8 +188,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 let content = template(context);
                 list.innerHTML += content;
-
               }
+
+              loader.style.display = "none";
   					},
   					failure: function(data) {
 

@@ -112,8 +112,6 @@ def get_ingredient(request, articleNumber):
 			return JsonResponse(result, safe=False)
 
 
-
-
 """ Load next 5 or the remaining ingredients object with filter applied  """
 def show_more_ingredients(request):
 	if request.method == "GET":

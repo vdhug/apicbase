@@ -142,3 +142,29 @@ def filter_recipes(request):
 			result.append((serializers.serialize('json', [ recipe, ]), recipe.cost))
 
 		return JsonResponse(result, safe=False)
+
+
+""" Load next 5 or the remaining recipes object with filter applied  """
+def show_more_recipes(request):
+	if request.method == "GET":
+		page = int(request.GET.get('page'))
+		filter = ""
+		""" Get text filter cached """
+		if request.session.has_key('last_query'):
+			filter = request.session['last_query']
+
+		recipes = Recipe.objects.filter_recipes(filter)
+
+		if recipes.count() >= 5*page+5:
+			""" Query for another ten next objects """
+			recipes = recipes[page*5:page*5+5]
+		else:
+			""" Query for lest bunch of objects """
+			recipes = recipes[page*5:recipes.count()]
+
+
+		result = []
+		for recipe in recipes:
+			result.append((serializers.serialize('json', [ recipe, ]), recipe.cost))
+
+		return JsonResponse(result, safe=False)
