@@ -21,10 +21,14 @@ def auth_login(request):
 	if request.method == "POST":
 		username = request.POST['username']
 		password = request.POST['password']
+		context = {"auth": "auth"}
 		user = authenticate(username=username, password=password)
 		if user is not None:
 			login(request, user)
 			return HttpResponseRedirect(reverse("index"))
+		else:
+			context['message'] = "User or password incorrect."
+			return render(request, "home/login.html", context)
 
 
 """ Logout user """
