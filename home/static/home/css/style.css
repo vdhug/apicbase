@@ -236,8 +236,20 @@ a:hover {
 
 .item span {
 	font-weight: bold;
-	width: 70px;
+	width: 150px;
+	margin-left: 10px;
 	display: inline-block;
+}
+
+.separator {
+	content: "";
+	display: inline-block;
+	width: 10px;
+	height: 100%;
+	position: absolute;
+	lef: 0;
+	top: 0;
+	background-color: #252525;
 }
 
 /*Footer*/

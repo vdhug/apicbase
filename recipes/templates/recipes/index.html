@@ -13,9 +13,7 @@
 <script id="handlebar-recipe-show-template" type="text/template">
 	<li class="item">
 		<div class="media">
-		{% endverbatim %}
-		<img src="{% static 'home/img/cafe-1.jpg' %}" alt="Café 1">
-		{% verbatim %}
+		<div class="separator"></div>
 		<ul class="media-body">
 			<li><span>Name</span> {{name}}</li>
 			<li><span>Cost</span> {{cost}} &euro;</li>
@@ -53,18 +51,19 @@
 	<ul class="list-items">
 		{% for recipe in recipes %}
 			<li class="item">
+
 				<div class="media">
-				<img src="{% static 'home/img/cafe-1.jpg' %}" alt="Café 1">
-				<ul class="media-body">
-					<li><span>Name</span> {{recipe.name}}</li>
-					<li><span>Cost</span> {{recipe.cost}} &euro;</li>
-					<li><span>Desc.</span> {{recipe.description}}</li>
-				</ul>
-				<!-- If authenticated is true show link to edit this recipe -->
-				{% if authenticated is True %}
-					<a class="edit" href="{% url 'edit_recipe' recipe.id %}">Editar</a>
-				{% endif %}
-				<a href="{% url 'details' recipe.id %}"><i class="details fas fa-eye"></i></a>
+					<div class="separator"></div>
+					<ul class="media-body">
+						<li><span>Name</span> {{recipe.name}}</li>
+						<li><span>Est. Cost</span> {{recipe.cost}} &euro;</li>
+						<li><span>Description</span> {{recipe.description}}</li>
+					</ul>
+					<!-- If authenticated is true show link to edit this recipe -->
+					{% if authenticated is True %}
+						<a class="edit" href="{% url 'edit_recipe' recipe.id %}">Editar</a>
+					{% endif %}
+					<a href="{% url 'details' recipe.id %}"><i class="details fas fa-eye"></i></a>
 
 				</div>
 			</li>
