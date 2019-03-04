@@ -8,7 +8,8 @@ from django.contrib.auth.models import User
 
 """ View to show a little joke about the creative process of this project """
 def process(request):
-	return render(request, "home/process.html")
+	context = {"auth": "auth"}
+	return render(request, "home/process.html", context)
 
 
 """ Render login page in GET request | authenticate user in POST request"""
