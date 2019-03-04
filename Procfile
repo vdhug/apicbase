@@ -1,1 +1,1 @@
-web: gunicorn apicabase.wsgi --log-file -
+web: gunicorn apicbase.wsgi --log-file -
