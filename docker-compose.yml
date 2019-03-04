@@ -5,7 +5,7 @@ services:
         image: postgres
     migration:
         build: .
-        command: python3 manage.py migrate --settings=apicbase.settings.local
+        command: python3 manage.py migrate
         command: sh ./superuser.sh
         volumes:
             - .:/usr/src/app
@@ -13,7 +13,7 @@ services:
             - db
     web:
         build: .
-        command: python3 manage.py runserver --settings=apicbase.settings.local 0.0.0.0:8000
+        command: python3 manage.py runserver 0.0.0.0:8000
         volumes:
             - .:/usr/src/app
         ports:
