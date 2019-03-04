@@ -86,20 +86,22 @@ document.addEventListener('DOMContentLoaded', () => {
           // Make ajax request
           let filter = document.querySelector('#filter').value;
 
+
           $.ajax({
   					url: '/ingredients/filter',
   					data:{
   						filter: filter,
   					},
   					success: function(data) {
+
               // Query for list of result
               var result = JSON.parse(data)
               var list = document.querySelector(".list-items");
               list.innerHTML = "";
               let showMoreButton = document.querySelector('#show-more-button');
               let showMoremessage = document.querySelector('#show-more-message');
-              // Set the dataset attribute to 5, because it is the first time that the query was executed
-              showMoreButton.dataset.page = 5;
+              showMoreButton.dataset.page = 1;
+
 
               // Check if number of results is less than 2, disable load more
               if (result.length < 5) {
@@ -147,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
           let loader = document.querySelector('.loader');
           // show loader
           loader.style.display = "block";
-          debugger
+
           // Make ajax request
           let page = parseInt(event.target.dataset.page);
           $.ajax({
@@ -156,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
   						page: page,
   					},
   					success: function(data) {
-
+              debugger
               // Query for list of result
               var result = JSON.parse(data)
               var list = document.querySelector(".list-items");

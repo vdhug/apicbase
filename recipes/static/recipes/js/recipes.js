@@ -141,8 +141,9 @@ document.addEventListener('DOMContentLoaded', () => {
               list.innerHTML = "";
               let showMoreButton = document.querySelector('#show-more-button');
               let showMoremessage = document.querySelector('#show-more-message');
-              // Set the dataset attribute to 5, because it is the first time that the query was executed
-              showMoreButton.dataset.page = 5;
+              let filter = document.querySelector('#filter').value;
+              showMoreButton.dataset.page = 1;
+
 
               // Check if number of results is less than 2, disable load more
               if (Object.keys(data).length < 5) {

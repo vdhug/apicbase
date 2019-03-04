@@ -93,8 +93,11 @@ def save_ingredient(request):
 def filter_ingredients(request):
 	if request.method == "GET":
 		filter = request.GET.get('filter')
+		if filter == "":
+			ingredients = Ingredient.objects.all()
+		else:
+			ingredients = Ingredient.objects.filter_ingredients(filter)
 
-		ingredients = Ingredient.objects.filter_ingredients(filter)
 		if ingredients.count() > 5:
 			""" Query for first ten  objects """
 			ingredients = ingredients[0:5]
@@ -129,7 +132,10 @@ def show_more_ingredients(request):
 		if request.session.has_key('last_query'):
 			filter = request.session['last_query']
 
-		ingredients = Ingredient.objects.filter_ingredients(filter)
+		if filter == "":
+			ingredients = Ingredient.objects.all()
+		else:
+			ingredients = Ingredient.objects.filter_ingredients(filter)
 
 		if ingredients.count() >= 5*page+5:
 			""" Query for another ten next objects """
