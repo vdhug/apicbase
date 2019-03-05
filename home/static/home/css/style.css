@@ -108,6 +108,13 @@ a:hover {
 	background-position: 0 calc(-24px * 2);
 }
 
+.active {
+	color: #c17139 !important;
+}
+.nav-active {
+	color: #757575 !important;
+}
+
 @media (max-width: 767px) {
 	.side-nav {
 		background: none;

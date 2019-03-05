@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="{% static 'home/css/style.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'home/css/responsive.css' %}">
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<script src="{% static 'home/js/layout.js' %}" type="text/javascript"></script>
 	{% block script %}
 	{% endblock %}
 </head>
@@ -35,14 +36,14 @@
 				<ul>
 							<!-- Checks if variable exists  -->
 							{% if auth %}
-								<li><a href="{% url 'login' %}">Login</a></li>
+								<li><a id="menu-login" href="{% url 'login' %}">Login</a></li>
 							<!-- If variable does not exist render logout -->
 							{% else %}
 								<li><a href="{% url 'logout' %}">Logout</a></li>
 							{% endif %}
 
-					<li><a href="{% url 'process' %}">Process</a></li>
-					<li><a href="{% url 'about' %}">About</a></li>
+					<li><a id="menu-process" href="{% url 'process' %}">Process</a></li>
+					<li><a id="menu-about" href="{% url 'about' %}">About</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -54,10 +55,10 @@
 	<div class="row">
 		<nav class="side-nav col-md-4 col-xl-3">
 			<ul>
-				<li><a class="nav-recipes" href="{% url 'index' %}">Recipes</a></li>
+				<li><a id="nav-recipes" class="nav-recipes" href="{% url 'index' %}">Recipes</a></li>
 				{% if auth %}
 				{% else %}
-					<li><a class="nav-ingredients" href="{% url 'ingredients' %}">Ingredients</a></li>
+					<li><a id="nav-ingredients" class="nav-ingredients" href="{% url 'ingredients' %}">Ingredients</a></li>
 				{% endif %}
 			</ul>
 		</nav>
