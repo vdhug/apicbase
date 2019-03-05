@@ -24,7 +24,11 @@ def about(request):
 """ Render login page in GET request | authenticate user in POST request"""
 def auth_login(request):
 	if request.method == "GET":
-		context = {"auth": "auth"}
+
+		if request.user.is_authenticated:
+			return HttpResponseRedirect(reverse("index"))
+		else:
+			context = {"auth": "auth"}
 		return render(request, "home/login.html", context)
 
 	if request.method == "POST":
