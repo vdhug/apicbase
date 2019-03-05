@@ -48,23 +48,9 @@ a:hover {
 	flex-wrap: wrap;
 }
 
-.header-menu ul li a::after {
-	content: '';
-	display: block;
-  height: 2px;
-	margin-top: 3px;
-	width: 50px;
-  background-color: #252525;
-	transform: scaleX(0);
-  transition: .25s linear;
+.header-menu ul li a:hover {
+	color: #c17139;
 }
-
-.header-menu ul li a:hover::after {
-	visibility: visible;
-	transform: scaleX(1);
-}
-
-
 
 @media (max-width: 739px) {
 	.header-menu ul {

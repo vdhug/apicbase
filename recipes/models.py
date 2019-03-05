@@ -95,7 +95,7 @@ class Recipe(models.Model):
     def get_cost(self):
         cost = 0
         for ingredientOfRecipe in self.ingredients.all():
-            cost += (ingredientOfRecipe.quantity * ingredientOfRecipe.ingredient.base_price)
+            cost += ((ingredientOfRecipe.quantity * ingredientOfRecipe.ingredient.base_price) / ingredientOfRecipe.ingredient.base_amount)
         return "{0:.2f}".format(cost)
 
     """ Define a property to return the cost of the recipe """

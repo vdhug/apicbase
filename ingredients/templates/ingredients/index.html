@@ -13,8 +13,8 @@
 					<div class="separator"></div>
 					<ul class="media-body">
 						<li><span>Name</span> {{ name }} ({{ articleNumber }})</li>
-						<li><span>Base</span> {{baseAmount}} {{ unit }}</li>
-						<li><span>Price</span> {{basePrice}} &euro;</li>
+						<li><span>B. Amount</span> {{baseAmount}} {{ unit }}</li>
+						<li><span>B. Price</span> {{basePrice}} &euro;</li>
 					</ul>
 					<a class="edit" href="edit/{{ id }}"></a>
 					</div>
@@ -41,8 +41,8 @@
   			<div class="separator"></div>
 				<ul class="media-body">
 					<li><span>Name</span> {{ingredient.name}} ({{ingredient.article_number}})</li>
-					<li><span>Base</span> {{ingredient.base_amount}} {{ingredient.unit_name}}</li>
-					<li><span>Price</span> {{ingredient.base_price}} &euro;</li>
+					<li><span>B. Amount</span> {{ingredient.base_amount}} {{ingredient.unit_name}}</li>
+					<li><span>B. Price</span> {{ingredient.base_price}} &euro;</li>
 				</ul>
 				<a class="edit" href="{% url 'edit_ingredient' ingredient.id %}">Editar</a>
 				</div>

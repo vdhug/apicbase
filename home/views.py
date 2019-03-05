@@ -8,9 +8,18 @@ from django.contrib.auth.models import User
 
 """ View to show a little joke about the creative process of this project """
 def process(request):
-	context = {"auth": "auth"}
+	context = {}
+	if not request.user.is_authenticated:
+		context['auth'] = "auth"
 	return render(request, "home/process.html", context)
 
+
+""" View to show about route of this project """
+def about(request):
+	context = {}
+	if not request.user.is_authenticated:
+		context['auth'] = "auth"
+	return render(request, "home/about.html", context)
 
 """ Render login page in GET request | authenticate user in POST request"""
 def auth_login(request):

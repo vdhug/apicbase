@@ -1,0 +1,25 @@
+{% extends "home/layout.html" %}
+{% load static %}
+{% block title %}
+  About
+{% endblock %}
+
+{% block content %}
+    <header class="row align-items-center mt-3">
+        <h1 class="col">About</h1>
+        <a class="button-header mr-3 ml-3" href="{% url 'index' %}">Return</a>
+    </header>
+
+    <div class="create-item pr-3">
+      <p class="mb-4">
+        &emsp;This project is the <a href="https://get.apicbase.com" target="_blank">APICBASE</a> internship assigment 2018. The goals was to create a small Recipe Manager application in Django (Python) in which you can create ingredients and recipes and that allows the calculation of food cost for the recipes.
+      </p>
+      <p class="mb-1">
+        The administrators of the system can create, update and delete ingredients and recipes, while visitors only have access to the details of the recipes.<br>
+        The ingredients registered in the system needs to have a base amount and an estimated price related to that.<br>
+        The estimated cost of one recipe is the sum of the cost of all ingredients. The cost of each ingredient is calculated using the formula (QUANTITY_NEEDED * INGREDIENT_BASE_PRICE) / INGREDIENT_BASE_AMOUNT. The quantity needed of the ingredient always consider the current unit measure of the related ingredient.
+      </p>
+    </div>
+
+
+{% endblock %}
