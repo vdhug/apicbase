@@ -98,6 +98,7 @@ class Ingredient(models.Model):
         ('KG', 'Kilograms'),
         ('CL', 'Centiliters'),
         ('LT', 'Liters'),
+        ('ML', 'Milliliters'),
         ('U', 'Unit'),
     )
     unit = models.CharField(

@@ -3,6 +3,8 @@ const UNIT_CHOICES = {
   'KG': 'Kilograms',
   'CL': 'Centiliters',
   'LT': 'Liters',
+  'ML': 'Milliliters',
+  'U': 'Unit',
 }
 document.addEventListener('DOMContentLoaded', () => {
     // Retrieve and compile Handlebars template

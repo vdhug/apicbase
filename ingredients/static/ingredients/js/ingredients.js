@@ -7,10 +7,9 @@ document.addEventListener('DOMContentLoaded', () => {
       'KG': 'Kilograms',
       'CL': 'Centiliters',
       'LT': 'Liters',
+      'ML': 'Milliliters',
+      'U': 'Unit',
   }
-
-
-
 
     let btnReset = document.querySelector('#reset-form');
     if (btnReset) {
