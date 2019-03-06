@@ -12,7 +12,7 @@ import json
 def ingredients(request):
 
 	context = {}
-	ingredients = Ingredient.objects.get_all()
+	ingredients = Ingredient.objects.filter_ingredients("")
 	request.session['last_query'] = ""
 
 	""" Loading first 5 results in the screen """

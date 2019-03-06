@@ -207,20 +207,23 @@ document.addEventListener('DOMContentLoaded', () => {
               // show loader
               loader.style.display = "block";
               // Make ajax request
-              let page = parseInt(event.target.dataset.page);
+              let inicio = parseInt(event.target.dataset.inicio);
+              let final = parseInt(event.target.dataset.final);
               $.ajax({
       					url: '/recipes/show_more',
       					data:{
-      						page: page,
+      						inicio: inicio,
+      						final: final,
       					},
       					success: function(data) {
-                  debugger
+
                   // Query for list of result
                   var list = document.querySelector(".list-items");
                   let showMoreButton = document.querySelector('#show-more-button');
                   let showMoremessage = document.querySelector('#show-more-message');
                   // Set the dataset attribute to 5, because it is the first time that the query was executed
-                  showMoreButton.dataset.page = page+5;
+                  showMoreButton.dataset.inicio = inicio+5;
+                  showMoreButton.dataset.final = final+5;
                   debugger
 
                   // Check if number of results is less than 5, disable load more

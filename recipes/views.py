@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 def index(request):
 	context = {}
-	recipes = Recipe.objects.all()
+	recipes = Recipe.objects.filter_recipes("")
 	request.session['last_query'] = ""
 
 	""" Loading first 5 results in the screen """
@@ -173,7 +173,8 @@ def filter_recipes(request):
 """ Load next 5 or the remaining recipes object with filter applied  """
 def show_more_recipes(request):
 	if request.method == "GET":
-		page = int(request.GET.get('page'))
+		inicio = int(request.GET.get('inicio'))
+		final = int(request.GET.get('final'))
 		filter = ""
 		""" Get text filter cached """
 		if request.session.has_key('last_query'):
@@ -181,12 +182,12 @@ def show_more_recipes(request):
 
 		recipes = Recipe.objects.filter_recipes(filter)
 
-		if recipes.count() > page+4:
+		if recipes.count() >= final:
 			""" Query for another 5 next objects """
-			recipes = recipes[page:page+4]
+			recipes = recipes[inicio:final]
 		else:
 			""" Query for lest bunch of objects """
-			recipes = recipes[page:recipes.count()]
+			recipes = recipes[inicio:]
 
 
 		result = []
