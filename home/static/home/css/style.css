@@ -153,7 +153,7 @@ a:hover {
 	font-weight: bold;
 }
 
-.button-header, .button-save, .button-clear {
+.button-header, .button-save, .button-clear, .button-delete {
 	border: 2px solid #c17139;
 	color: #252525;
 	font-size: 1.125em;
@@ -163,6 +163,15 @@ a:hover {
 	padding: 15px 20px;
 	border-radius: 4px;
 	text-align: center;
+}
+
+.button-delete {
+	border-color: #dc3545;
+}
+
+.button-delete:hover {
+	background-color: #dc3545;
+	color: #FFF;
 }
 
 .button-header:hover {
@@ -362,9 +371,19 @@ a:hover {
   top: 12px;
 }
 
-.details:hover {
+.details:hover, .delete:hover {
 	cursor: pointer;
 	color: #C1713C;
+}
+
+.delete {
+	position: absolute;
+	font-size: 1.15rem;
+  overflow: hidden;
+  position: absolute;
+	right: 20px;
+	color: #787878;
+  bottom: 10px;
 }
 
 .recipe-details {

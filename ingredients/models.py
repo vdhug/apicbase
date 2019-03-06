@@ -48,6 +48,19 @@ class IngredientManager(models.Manager):
             return {'success': False, 'message': 'Error in update_ingredient method. Raised in path: ingredient.models: line 44\n'+str(e)}
 
 
+    """ Delete method """
+    def delete_ingredient(self, id):
+        try:
+            i = self.get(pk=id)
+            i.delete()
+
+            return {'success': True, 'message': 'Success on deleting ingredient'}
+
+        except Exception as e:
+            return {'success': False, 'message': 'Error in delete_ingredient method. Raised in path: ingredient.models: line 44\n'+str(e)}
+
+
+
     """ Function that filter ingredients by name and article number """
     def filter_ingredients(self, text):
         return self.filter(Q(name__icontains=text) | Q(article_number__icontains=text))

@@ -54,6 +54,24 @@ def edit_ingredient(request, id):
 	return render(request, "ingredients/ingredient.html", context)
 
 
+""" Render page to delete a ingredient """
+@login_required
+def delete_ingredient(request, id):
+	try:
+		ingredient = Ingredient.objects.get(pk=id)
+	except Ingredient.DoesNotExist as e:
+		raise Http404("Ingredient does not exist")
+
+	if request.method == "GET":
+		context = {}
+		context['ingredient'] = ingredient
+		return render(request, "ingredients/ingredient_delete.html", context)
+
+	if request.method == "POST":
+		result = Ingredient.objects.delete_ingredient(ingredient.id)
+		request.session['result_message'] = result['message']
+		return HttpResponseRedirect(reverse("add_ingredient"))
+
 """ Receive a POST request, try to save the object and redirect to the same page with a feedback message """
 @login_required
 def save_ingredient(request):

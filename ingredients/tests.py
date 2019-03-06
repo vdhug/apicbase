@@ -15,6 +15,12 @@ class ModelsTestCase(TestCase):
         self.assertTrue(result['success'])
 
 
+    """ Check if the delete_ingredient method is working properly  """
+    def test_ingredient_delete(self):
+        i = Ingredient.objects.save_ingredient(name="Delete", article_number="DE001", base_amount=1.75, unit='KG', base_price=2.50)
+        result = Ingredient.objects.delete_ingredient(i['object'].id)
+        self.assertTrue(result['success'])
+
     """ Check if the save_ingredient method is working properly when receiveing an ingredient with article number empty """
     def test_ingredient_empty_article_number(self):
         result = Ingredient.objects.save_ingredient(name="Corn", article_number="", base_amount=1.75, unit='KG', base_price=2.50)
@@ -66,8 +72,9 @@ class ModelsTestCase(TestCase):
     """ Check if the save_ingredient method is working properly when receiveing an ingredient to update """
     def test_ingredient_update(self):
         updates = {"name": "BB333"}
-        result = Ingredient.objects.update_ingredient(id=12, updates=updates)
-        b = Ingredient.objects.get(id=12)
+        obj = Ingredient.objects.get_ingredient_by_article_number(articleNumber="AA111")
+        result = Ingredient.objects.update_ingredient(id=obj.id, updates=updates)
+        b = Ingredient.objects.get(id=obj.id)
         self.assertEqual(b.name, "BB333")
 
 

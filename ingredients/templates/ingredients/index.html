@@ -45,6 +45,7 @@
 					<li><span>B. Price</span> {{ingredient.base_price}} &euro;</li>
 				</ul>
 				<a class="edit" href="{% url 'edit_ingredient' ingredient.id %}">Editar</a>
+        <a href="{% url 'delete_ingredient' ingredient.id %}"><i class="delete fas fa-trash"></i></a>
 				</div>
 			</li>
 		{% endfor %}

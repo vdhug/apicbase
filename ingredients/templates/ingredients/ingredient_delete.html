@@ -1,0 +1,45 @@
+{% extends "home/layout.html" %}
+{% load static %}
+{% block title %} Ingredient {% endblock %}
+
+{% block script %}
+  <script src="{% static 'ingredients/js/ingredients.js' %}" type="text/javascript"></script>
+{% endblock %}
+
+{% block content %}
+    <header class="row align-items-center mt-3">
+        <h1 class="col">Ingredient</h1>
+        <a class="button-header mr-3 ml-3" href="{% url 'ingredients' %}">Return</a>
+    </header>
+
+    <!-- When a instance is created or updated the feedback will appear here -->
+    {% if resultMessage %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{resultMessage}}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endif %}
+
+    <form id="form-ingredient" class="create-item" action="{% url 'delete_ingredient' ingredient.id %}" method="POST">
+          {% csrf_token %}
+          <label for="articleNumber">Article Number</label>
+          <input type="text" readonly name="articleNumber" data-name="Article number" value="{{ingredient.article_number}}" autocomplete="off" minlength="1" maxlength="5" required>
+          <label for="name">Name</label>
+          <input type="text" readonly name="name" data-name="Name" value="{{ingredient.name}}" autocomplete="off" minlength="1" maxlength="64" required>
+          <label for="baseAmount">Base Amount</label>
+          <input type="number" readonly name="baseAmount" data-name="Base amount" min="0" max="9999999" step=any value="{{ingredient.base_amount}}" required>
+          <label for="unit">Unit</label>
+          <select class="" name="unit" disabled>
+            <option value="{{ingredient.unit}}">{{ingredient.unit_name}}</option>
+          </select>
+          <label for="price">Base Price (&euro;)</label>
+          <input type="number" readonly name="basePrice" data-name="Base price" min="0" max="9999999" step=any value="{{ingredient.base_price}}" required/>
+          <div class="error-message">
+          </div>
+          <a class="button-clear" href="{% url 'ingredients' %}">Cancel</a>
+          <a id=delete-form class="button-delete" href="#">Delete</a>
+    </form>
+
+{% endblock %}

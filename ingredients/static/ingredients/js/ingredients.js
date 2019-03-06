@@ -21,6 +21,16 @@ document.addEventListener('DOMContentLoaded', () => {
       };
     }
 
+    let btnDelete = document.querySelector('#delete-form');
+    if (btnDelete) {
+      // Add Listener to clear button to reset the informations of the form
+      btnDelete.onclick = (e)  => {
+          e.preventDefault();
+          // Get form and reset informations
+          document.getElementById("form-ingredient").submit();
+      };
+    }
+
     let btnSubmit = document.querySelector('#submit-form');
     if (btnSubmit) {
       // Add Listener to submit button to submit the form

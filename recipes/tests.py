@@ -92,4 +92,4 @@ class ModelsTestCase(TestCase):
         i = Ingredient.objects.get(article_number="CO001")
 
         result = IngredientOfRecipe.objects.add_ingredient_of_recipe(recipe=r, ingredient=i, quantity=2)
-        self.assertEqual(r.get_cost(), 4)
+        self.assertEqual(r.get_cost(), '4.00')
