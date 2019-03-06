@@ -72,6 +72,7 @@ def delete_ingredient(request, id):
 		request.session['result_message'] = result['message']
 		return HttpResponseRedirect(reverse("add_ingredient"))
 
+
 """ Receive a POST request, try to save the object and redirect to the same page with a feedback message """
 @login_required
 def save_ingredient(request):

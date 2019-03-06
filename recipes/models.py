@@ -48,6 +48,18 @@ class RecipeManager(models.Manager):
             return {'success': False, 'message': 'Error in update_recipe method. Raised in path: ingredient.models: line 48\n'+str(e)}
 
 
+    """ Delete method """
+    def delete_recipe(self, id):
+        try:
+            r = self.get(pk=id)
+            r.delete()
+
+            return {'success': True, 'message': 'Success on deleting recipe'}
+
+        except Exception as e:
+            return {'success': False, 'message': 'Error in delete_recipe method. Raised in path: recipe.models: line 60\n'+str(e)}
+
+
     """ Function that filter recipes by name and description """
     def filter_recipes(self, text):
         return self.filter(Q(name__icontains=text) | Q(description__icontains=text))

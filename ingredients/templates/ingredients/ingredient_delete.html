@@ -8,19 +8,9 @@
 
 {% block content %}
     <header class="row align-items-center mt-3">
-        <h1 class="col">Ingredient</h1>
+        <h1 class="col">Delete Ingredient</h1>
         <a class="button-header mr-3 ml-3" href="{% url 'ingredients' %}">Return</a>
     </header>
-
-    <!-- When a instance is created or updated the feedback will appear here -->
-    {% if resultMessage %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      {{resultMessage}}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    {% endif %}
 
     <form id="form-ingredient" class="create-item" action="{% url 'delete_ingredient' ingredient.id %}" method="POST">
           {% csrf_token %}
@@ -36,8 +26,6 @@
           </select>
           <label for="price">Base Price (&euro;)</label>
           <input type="number" readonly name="basePrice" data-name="Base price" min="0" max="9999999" step=any value="{{ingredient.base_price}}" required/>
-          <div class="error-message">
-          </div>
           <a class="button-clear" href="{% url 'ingredients' %}">Cancel</a>
           <a id=delete-form class="button-delete" href="#">Delete</a>
     </form>

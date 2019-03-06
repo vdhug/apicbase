@@ -55,6 +55,25 @@ def edit_recipe(request, id):
 	return render(request, "recipes/recipe.html", context)
 
 
+""" Render page to delete a recipe """
+@login_required
+def delete_recipe(request, id):
+	try:
+		recipe = Recipe.objects.get(pk=id)
+	except Recipe.DoesNotExist as e:
+		raise Http404("Recipe does not exist")
+
+	if request.method == "GET":
+		context = {}
+		context['recipe'] = recipe
+		return render(request, "recipes/recipe_delete.html", context)
+
+	if request.method == "POST":
+		result = Recipe.objects.delete_recipe(recipe.id)
+		request.session['result_message'] = result['message']
+		return HttpResponseRedirect(reverse("add_recipe"))
+
+
 """ Render view to see details about one recipe """
 def details(request, id):
 	try:

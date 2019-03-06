@@ -1,0 +1,52 @@
+{% extends "home/layout.html" %}
+{% load static %}
+
+{% block title %} Recipe {% endblock %}
+<!-- Loading helpers functions to use in the template -->
+{% load helpers %}
+
+{% block script %}
+
+<script src="{% static 'recipes/js/recipes.js' %}" type="text/javascript"></script>
+
+{% endblock %}
+
+
+{% block content %}
+    <header class="row align-items-center mt-3">
+        <h1 class="col">Delete Recipe</h1>
+        <a class="button-header mr-3 ml-3" href="{% url 'index' %}">Return</a>
+    </header>
+
+    <form id="form-recipe" class="create-item" action="{% url 'delete_recipe' recipe.id %}" method="post">
+      {% csrf_token %}
+        <div>
+            <label for="name">Name</label>
+            <input type="text" readonly name="nameOfRecipe" value="{{recipe.name}}" data-name="Name" minlength="1" maxlength="64" required >
+            <label for="description">Description</label>
+            <input type="text" readonly name="description" value="{{recipe.description}}" data-name="Description"  minlength="1" maxlength="64" required >
+            <div class="ingredients">
+                <label for="ingredients">Ingredients</label>
+                <ul id="ingredients">
+                  {% if recipe.ingredients|has_ingredients %}
+                      {% for ingredientOfRecipe in recipe.ingredients.all %}
+                        <li>
+                            <input type="text" name="articleNumber" readonly value="{{ingredientOfRecipe.ingredient.article_number}}" data-name="Article number" minlength="1" maxlength="5" required placeholder="A. Number" onkeyup="getIngredient()">
+                            <i class="fas fa-search"></i>
+                            <input readonly type="text" name="name"  value="{{ingredientOfRecipe.ingredient.name}}" placeholder="Name">
+                            <input type="number" readonly name="quantity" value="{{ingredientOfRecipe.quantity}}" data-name="Quantity" min="0" max="9999999" step=any required placeholder="Quantity">
+                            <input readonly type="text" name="unit"  value="{{ingredientOfRecipe.ingredient.unit_name}}" placeholder="Unit" step=any>
+                        </li>
+                      {% endfor %}
+                  {% endif %}
+                </ul>
+            </div>
+
+            <label for="method">Method of preparation</label>
+            <textarea readonly name="method" rows="8" data-name="Method of preparation" minlength="1" required>{{recipe.method_of_preparation}}</textarea>
+            <a class="button-clear" href="{% url 'index' %}">Cancel</a>
+            <a id=delete-form class="button-delete" href="#">Delete</a>
+        </div>
+    </form>
+
+{% endblock %}

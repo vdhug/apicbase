@@ -23,6 +23,7 @@
 				{% if authenticated is True %}
 					{% verbatim %}
 						<a class="edit" href="edit/{{id}}">Editar</a>
+	          <a href="delete/{{ id }}"><i class="delete fas fa-trash"></i></a>
 					{% endverbatim %}
 				{% endif %}
 			{% verbatim %}
@@ -62,6 +63,7 @@
 					<!-- If authenticated is true show link to edit this recipe -->
 					{% if authenticated is True %}
 						<a class="edit" href="{% url 'edit_recipe' recipe.id %}">Editar</a>
+	          <a href="{% url 'delete_recipe' recipe.id %}"><i class="delete fas fa-trash"></i></a>
 					{% endif %}
 					<a href="{% url 'details' recipe.id %}"><i class="details fas fa-eye"></i></a>
 
