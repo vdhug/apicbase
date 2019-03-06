@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               for(var i = 0; i < result.length; i++) {
                 let ingredient = result[i]['fields'];
-                
+
                 let context = {
                   "id": result[i].pk,
                   "name": ingredient['name'],
