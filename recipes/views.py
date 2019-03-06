@@ -189,7 +189,6 @@ def show_more_recipes(request):
 			""" Query for lest bunch of objects """
 			recipes = recipes[inicio:]
 
-
 		result = []
 		for recipe in recipes:
 			result.append((serializers.serialize('json', [ recipe, ]), recipe.cost))

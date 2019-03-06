@@ -142,7 +142,7 @@ class Ingredient(models.Model):
 
     """ Defining the ordering default to be last_modified descending and in the sequence date_created descending """
     class Meta:
-        ordering = ['-last_modified', "-date_created"]
+        ordering = ['id']
 
 
     """ Define funciton to get readable name from unit choices """

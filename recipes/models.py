@@ -115,7 +115,7 @@ class Recipe(models.Model):
 
     """ Defining the ordering default to be last_modified descending and in the sequence date_created descending """
     class Meta:
-        ordering = ['-last_modified', "-date_created"]
+        ordering = ['id']
 
 
 """ IngredientOfRecipeManager, class to manage all the db operations related to the relationship between recipe and ingredient model """

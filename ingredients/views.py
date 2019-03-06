@@ -145,24 +145,21 @@ def get_ingredient(request, articleNumber):
 @login_required
 def show_more_ingredients(request):
 	if request.method == "GET":
-		page = int(request.GET.get('page'))
+		inicio = int(request.GET.get('inicio'))
+		final = int(request.GET.get('final'))
 		filter = ""
 		""" Get text filter cached """
 		if request.session.has_key('last_query'):
 			filter = request.session['last_query']
 
-		if filter == "":
-			ingredients = Ingredient.objects.all()
-		else:
-			ingredients = Ingredient.objects.filter_ingredients(filter)
+		ingredients = Ingredient.objects.filter_ingredients(filter)
 
-
-		if ingredients.count() > page+4:
+		if ingredients.count() >= final:
 			""" Query for another 5 next objects """
-			ingredients = ingredients[page:page+4]
+			ingredients = ingredients[inicio:final]
 		else:
 			""" Query for lest bunch of objects """
-			ingredients = ingredients[page:ingredients.count()]
+			ingredients = ingredients[inicio:]
 
 		data = serializers.serialize('json', list(ingredients))
 

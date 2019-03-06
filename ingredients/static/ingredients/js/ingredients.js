@@ -158,13 +158,17 @@ document.addEventListener('DOMContentLoaded', () => {
           let loader = document.querySelector('.loader');
           // show loader
           loader.style.display = "block";
+          // Make ajax request
+          let inicio = parseInt(event.target.dataset.inicio);
+          let final = parseInt(event.target.dataset.final);
 
           // Make ajax request
           let page = parseInt(event.target.dataset.page);
           $.ajax({
   					url: '/ingredients/show_more',
   					data:{
-  						page: page,
+              inicio: inicio,
+              final: final,
   					},
   					success: function(data) {
               debugger
@@ -174,7 +178,9 @@ document.addEventListener('DOMContentLoaded', () => {
               let showMoreButton = document.querySelector('#show-more-button');
               let showMoremessage = document.querySelector('#show-more-message');
               // Set the dataset attribute to 5, because it is the first time that the query was executed
-              showMoreButton.dataset.page = page+5;
+
+              showMoreButton.dataset.inicio = inicio+5;
+              showMoreButton.dataset.final = final+5;
 
               // Check if number of results is less than 5, disable load more
               if (result.length < 5) {
@@ -189,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
               for(var i = 0; i < result.length; i++) {
                 let ingredient = result[i]['fields'];
-                debugger
+                
                 let context = {
                   "id": result[i].pk,
                   "name": ingredient['name'],
