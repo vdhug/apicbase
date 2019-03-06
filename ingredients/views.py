@@ -156,12 +156,13 @@ def show_more_ingredients(request):
 		else:
 			ingredients = Ingredient.objects.filter_ingredients(filter)
 
-		if ingredients.count() >= 5*page+5:
-			""" Query for another ten next objects """
-			ingredients = ingredients[page*5:page*5+5]
+
+		if ingredients.count() > page+4:
+			""" Query for another 5 next objects """
+			ingredients = ingredients[page:page+4]
 		else:
 			""" Query for lest bunch of objects """
-			ingredients = ingredients[page*5:ingredients.count()]
+			ingredients = ingredients[page:ingredients.count()]
 
 		data = serializers.serialize('json', list(ingredients))
 

@@ -157,8 +157,8 @@ def filter_recipes(request):
 		filter = request.GET.get('filter')
 
 		recipes = Recipe.objects.filter_recipes(filter)
-		if recipes.count() > 5:
-			""" Query for first ten  objects """
+		if recipes.count() > 4:
+			""" Query for first five  objects """
 			recipes = recipes[0:5]
 		""" Saving filter in the cache """
 		request.session['last_query'] = filter
@@ -181,12 +181,12 @@ def show_more_recipes(request):
 
 		recipes = Recipe.objects.filter_recipes(filter)
 
-		if recipes.count() >= 5*page+5:
-			""" Query for another ten next objects """
-			recipes = recipes[page*5:page*5+5]
+		if recipes.count() > page+4:
+			""" Query for another 5 next objects """
+			recipes = recipes[page:page+4]
 		else:
 			""" Query for lest bunch of objects """
-			recipes = recipes[page*5:recipes.count()]
+			recipes = recipes[page:recipes.count()]
 
 
 		result = []

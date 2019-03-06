@@ -214,12 +214,14 @@ document.addEventListener('DOMContentLoaded', () => {
       						page: page,
       					},
       					success: function(data) {
+                  debugger
                   // Query for list of result
                   var list = document.querySelector(".list-items");
                   let showMoreButton = document.querySelector('#show-more-button');
                   let showMoremessage = document.querySelector('#show-more-message');
                   // Set the dataset attribute to 5, because it is the first time that the query was executed
                   showMoreButton.dataset.page = page+5;
+                  debugger
 
                   // Check if number of results is less than 5, disable load more
                   if (Object.keys(data).length < 5) {
